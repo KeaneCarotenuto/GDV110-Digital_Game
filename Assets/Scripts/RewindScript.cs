@@ -7,20 +7,26 @@ public class RewindScript : MonoBehaviour
 
     public class StoredTransform
     {
-        public int it;
+        public bool initial;
         public Vector3 pos;
         public Quaternion rot;
 
-        public StoredTransform(Vector3 _pos, Quaternion _rot)
+        public StoredTransform(Vector3 _pos, Quaternion _rot, bool _initial = false)
         {
             pos = _pos;
             rot = _rot;
+            initial = _initial;
         }
     }
 
     public List<StoredTransform> recordedTrans = new List<StoredTransform>();
     public bool playback = false;
     public int itt = 0;
+
+    private void Start()
+    {
+        //recordedTrans.Add(new StoredTransform(transform.position, transform.rotation, true));
+    }
 
     private void Update()
     {
@@ -63,11 +69,21 @@ public class RewindScript : MonoBehaviour
         if (playback)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            if (itt > 0)
+            if (itt >= 0)
             {
+                if (recordedTrans[itt].initial == true)
+                {
+                    Debug.Log("ORIG!");
+                    if (GetComponent<Explodable>() != null)
+                    {
+                        Debug.Log("ORIG2!");
+                        GetComponent<Explodable>().UnhideOriginal();
+                    }
+                }
+
                 Debug.Log("Playing " + recordedTrans[itt]);
-                transform.position = recordedTrans[itt].pos;
-                transform.rotation = recordedTrans[itt].rot;
+                transform.position =  Vector3.Lerp(transform.position ,recordedTrans[itt].pos, 0.1f);
+                transform.rotation =  Quaternion.Lerp(transform.rotation, recordedTrans[itt].rot, 0.1f);
                 itt--;
             }
             else
@@ -88,9 +104,11 @@ public class RewindScript : MonoBehaviour
 
     public void StopPlayback()
     {
+        Time.timeScale = 1.0f;
+
         if (GetComponent<Rigidbody2D>())
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            if (GetComponent<Rigidbody2D>().bodyType != RigidbodyType2D.Static) GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
         
         playback = false;
@@ -100,9 +118,11 @@ public class RewindScript : MonoBehaviour
 
     public void StartPlayback()
     {
+        Time.timeScale = 1.0f;
+
         if (GetComponent<Rigidbody2D>())
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            if (GetComponent<Rigidbody2D>().bodyType != RigidbodyType2D.Static) GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
 
         playback = true;
