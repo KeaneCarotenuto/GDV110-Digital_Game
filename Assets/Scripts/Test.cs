@@ -16,7 +16,7 @@ public class Test : MonoBehaviour
         if (GetComponent<RewindScript>().playback == false && collision.gameObject.name.Contains("Jumper"))
         {
             GetComponent<Explodable>().explode();
-            GetComponent<RewindScript>().recordedTrans.Add(new StoredTransform(transform.position, transform.rotation, true));
+            GetComponent<RewindScript>().recordedTrans.Add(new StoredTransform(Time.time, transform.position, transform.rotation, true));
         }
     }
 }

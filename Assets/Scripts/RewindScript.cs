@@ -86,8 +86,8 @@ public class RewindScript : MonoBehaviour
                 }
 
                 Debug.Log("Playing " + recordedTrans[itt]);
-                transform.position =  Vector3.Lerp(transform.position ,recordedTrans[itt].pos, 0.01f);
-                transform.rotation =  Quaternion.Lerp(transform.rotation, recordedTrans[itt].rot, 0.01f);
+                transform.position =  Vector3.Lerp(transform.position ,recordedTrans[itt].pos, 1f);
+                transform.rotation =  Quaternion.Lerp(transform.rotation, recordedTrans[itt].rot, 1f);
                 itt--;
             }
             else
