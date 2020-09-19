@@ -13,7 +13,7 @@ public class Test : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GetComponent<RewindScript>().playback == false)
+        if (GetComponent<RewindScript>().playback == false && collision.gameObject.name.Contains("Jumper"))
         {
             GetComponent<Explodable>().explode();
             GetComponent<RewindScript>().recordedTrans.Add(new StoredTransform(transform.position, transform.rotation, true));

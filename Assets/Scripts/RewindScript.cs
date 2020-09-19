@@ -8,11 +8,13 @@ public class RewindScript : MonoBehaviour
     public class StoredTransform
     {
         public bool initial;
+        public float time;
         public Vector3 pos;
         public Quaternion rot;
 
-        public StoredTransform(Vector3 _pos, Quaternion _rot, bool _initial = false)
+        public StoredTransform(float _time, Vector3 _pos, Quaternion _rot, bool _initial = false)
         {
+            time = _time;
             pos = _pos;
             rot = _rot;
             initial = _initial;
@@ -23,16 +25,16 @@ public class RewindScript : MonoBehaviour
     public bool playback = false;
     public int itt = 0;
 
-    private void Start()
+    private void Awake()
     {
-        //recordedTrans.Add(new StoredTransform(transform.position, transform.rotation, true));
+        recordedTrans.Add(new StoredTransform(Time.time, transform.position, transform.rotation));
     }
 
     private void Update()
     {
         //Debug.Log(recordedTrans[0].pos);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && false)   ///REMOVE FALSE
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -68,6 +70,8 @@ public class RewindScript : MonoBehaviour
     {
         if (playback)
         {
+            Time.timeScale = 1.0f;
+
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             if (itt >= 0)
             {
@@ -82,8 +86,8 @@ public class RewindScript : MonoBehaviour
                 }
 
                 Debug.Log("Playing " + recordedTrans[itt]);
-                transform.position =  Vector3.Lerp(transform.position ,recordedTrans[itt].pos, 0.1f);
-                transform.rotation =  Quaternion.Lerp(transform.rotation, recordedTrans[itt].rot, 0.1f);
+                transform.position =  Vector3.Lerp(transform.position ,recordedTrans[itt].pos, 0.01f);
+                transform.rotation =  Quaternion.Lerp(transform.rotation, recordedTrans[itt].rot, 0.01f);
                 itt--;
             }
             else
@@ -97,7 +101,7 @@ public class RewindScript : MonoBehaviour
             {
                 recordedTrans.RemoveRange(0, 2);
             }
-            recordedTrans.Add(new StoredTransform(transform.position, transform.rotation));
+            recordedTrans.Add(new StoredTransform(Time.time, transform.position, transform.rotation));
             
         }
     }

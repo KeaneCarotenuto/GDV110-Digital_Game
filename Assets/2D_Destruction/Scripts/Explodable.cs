@@ -184,9 +184,6 @@ public class Explodable : MonoBehaviour
 
     public void UnhideOriginal()
     {
-        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        gameObject.GetComponent<Collider2D>().enabled = true;
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
         foreach (GameObject frag in fragments)
         {
@@ -194,5 +191,9 @@ public class Explodable : MonoBehaviour
         }
 
         fragments.Clear();
+
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        gameObject.GetComponent<Collider2D>().enabled = true;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 }
