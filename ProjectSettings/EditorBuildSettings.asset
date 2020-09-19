@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Template/JUMP.unity
+    path: Assets/Scenes/JUMP.unity
     guid: 8d5d3ee80882d9c45b896e52bfe553a1
   m_configObjects: {}
