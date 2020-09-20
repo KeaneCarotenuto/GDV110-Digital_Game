@@ -118,6 +118,7 @@ public class RewindScript : MonoBehaviour
         playback = false;
         recordedTrans.Clear();
         if (gameObject.GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().color = Color.white;
+        if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
     public void StartPlayback()
@@ -133,5 +134,6 @@ public class RewindScript : MonoBehaviour
         itt = 0;
         Debug.Log("Started Playback");
         if (gameObject.GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().color = Color.green;
+        if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
     }
 }
