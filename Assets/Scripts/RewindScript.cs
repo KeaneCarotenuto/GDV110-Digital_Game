@@ -99,7 +99,7 @@ public class RewindScript : MonoBehaviour
         {
             if (recordedTrans.Count > 1000)
             {
-                recordedTrans.RemoveRange(0, 2);
+                recordedTrans.RemoveRange(recordedTrans.Count-2, 2);
             }
             recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation));
             

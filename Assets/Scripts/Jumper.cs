@@ -23,6 +23,13 @@ public class Jumper : MonoBehaviour
     // The Update function is called every render frame by Unity to handle object processing (can be public/private/protected/etc.)
     private void Update()
     {
+        //if (GetComponent<Rigidbody2D>().velocity.magnitude > 5)
+        //{
+        //    float angle = Mathf.Atan2(GetComponent<Rigidbody2D>().velocity.y, GetComponent<Rigidbody2D>().velocity.x) * Mathf.Rad2Deg;
+        //    transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), 0.1f) ;
+        //}
+        
+
         // Read the mouse position from input
         Vector3 mousePos = Input.mousePosition;
         // Zero out our mouse's z as a safety measure

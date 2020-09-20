@@ -150,9 +150,12 @@ public static class SpriteExploder {
 
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
-        rigidbody.velocity = origVelocity;
+        rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
+        rigidbody.velocity = origVelocity / 2;
 
-        
+        piece.AddComponent<RewindScript>();
+
+
 
         return piece;
     }
