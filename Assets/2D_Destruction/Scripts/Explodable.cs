@@ -179,7 +179,9 @@ public class Explodable : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         gameObject.GetComponent<Collider2D>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        if (gameObject.GetComponent<SpriteRenderer>()) gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
+
     }
 
     public void UnhideOriginal()

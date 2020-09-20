@@ -27,7 +27,7 @@ public class RewindScript : MonoBehaviour
 
     private void Awake()
     {
-        recordedTrans.Add(new StoredTransform(Time.time, transform.position, transform.rotation));
+        recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation));
     }
 
     private void Update()
@@ -73,7 +73,7 @@ public class RewindScript : MonoBehaviour
             Time.timeScale = 1.0f;
 
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            if (itt >= 0)
+            if (itt <= recordedTrans.Count-1)
             {
                 if (recordedTrans[itt].initial == true)
                 {
@@ -88,7 +88,7 @@ public class RewindScript : MonoBehaviour
                 Debug.Log("Playing " + recordedTrans[itt]);
                 transform.position =  Vector3.Lerp(transform.position ,recordedTrans[itt].pos, 1f);
                 transform.rotation =  Quaternion.Lerp(transform.rotation, recordedTrans[itt].rot, 1f);
-                itt--;
+                itt++;
             }
             else
             {
@@ -101,7 +101,7 @@ public class RewindScript : MonoBehaviour
             {
                 recordedTrans.RemoveRange(0, 2);
             }
-            recordedTrans.Add(new StoredTransform(Time.time, transform.position, transform.rotation));
+            recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation));
             
         }
     }
@@ -117,7 +117,7 @@ public class RewindScript : MonoBehaviour
         
         playback = false;
         recordedTrans.Clear();
-        GetComponent<SpriteRenderer>().color = Color.white;
+        if (gameObject.GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void StartPlayback()
@@ -130,8 +130,8 @@ public class RewindScript : MonoBehaviour
         }
 
         playback = true;
-        itt = recordedTrans.Count - 1;
+        itt = 0;
         Debug.Log("Started Playback");
-        GetComponent<SpriteRenderer>().color = Color.green;
+        if (gameObject.GetComponent<SpriteRenderer>()) GetComponent<SpriteRenderer>().color = Color.green;
     }
 }

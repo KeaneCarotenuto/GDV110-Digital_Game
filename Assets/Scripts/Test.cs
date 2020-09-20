@@ -5,6 +5,9 @@ using static RewindScript;
 
 public class Test : MonoBehaviour
 {
+
+    public int Step;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,10 +16,10 @@ public class Test : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GetComponent<RewindScript>().playback == false && collision.gameObject.name.Contains("Jumper"))
+        if (GetComponent<RewindScript>().playback == false && collision.gameObject.name.Contains("Jumper") && Step <= 2)
         {
             GetComponent<Explodable>().explode();
-            GetComponent<RewindScript>().recordedTrans.Add(new StoredTransform(Time.time, transform.position, transform.rotation, true));
+            GetComponent<RewindScript>().recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation, true));
         }
     }
 }
