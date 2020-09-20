@@ -20,12 +20,6 @@ public class Jumper : MonoBehaviour
     // This is how fast we will travel when we jump in the scene (turn it up to jump faster, down to jump slower)
     public float jumpStrength = 12.0f;
 
-    public bool isRecord = false;
-    public List<Vector3> recordedPos;
-    public List<Quaternion> recordedRot;
-    public bool playback = false;
-    public int itt = 0;
-
     // The Update function is called every render frame by Unity to handle object processing (can be public/private/protected/etc.)
     private void Update()
     {
