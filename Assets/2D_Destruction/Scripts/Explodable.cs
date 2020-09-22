@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using static RewindScript;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Explodable : MonoBehaviour
 {
+    public bool test = false;
+    public List<GameObject> BreaksOnContactWith;
     public System.Action<List<GameObject>> OnFragmentsGenerated;
 
     public bool allowRuntimeFragmentation = false;
+    
     public int extraPoints = 0;
     public int subshatterSteps = 0;
 
@@ -173,6 +177,20 @@ public class Explodable : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        foreach (GameObject item in BreaksOnContactWith)
+        {
+            if (GetComponent<RewindScript>().playback == false && collision.gameObject == item)
+            {
+                GetComponent<Explodable>().explode();
+                GetComponent<RewindScript>().recordedTrans.Insert(0, new StoredTransform(Time.time, transform.position, transform.rotation, true));
+            }
+        }
+
+        
     }
 
     public void HideOriginal()

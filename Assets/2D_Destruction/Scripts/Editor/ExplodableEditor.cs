@@ -10,6 +10,12 @@ public class ExplodableEditor : Editor {
     {
         Explodable myTarget = (Explodable)target;
         myTarget.allowRuntimeFragmentation = EditorGUILayout.Toggle("Allow Runtime Fragmentation", myTarget.allowRuntimeFragmentation);
+        
+        SerializedObject so = new SerializedObject(myTarget);
+        SerializedProperty stringsProp = so.FindProperty("BreaksOnContactWith");
+        EditorGUILayout.PropertyField(stringsProp, true);
+        so.ApplyModifiedProperties();
+
         myTarget.shatterType = (Explodable.ShatterType)EditorGUILayout.EnumPopup("Shatter Type", myTarget.shatterType);
         myTarget.extraPoints = EditorGUILayout.IntField("Extra Points", myTarget.extraPoints);
         myTarget.subshatterSteps = EditorGUILayout.IntField("Subshatter Steps",myTarget.subshatterSteps);
