@@ -97,7 +97,7 @@ public class RewindScript : MonoBehaviour
         }
         else
         {
-            if (recordedTrans.Count > 1000)
+            if (recordedTrans.Count > 5000)
             {
                 recordedTrans.RemoveRange(recordedTrans.Count-2, 2);
             }
