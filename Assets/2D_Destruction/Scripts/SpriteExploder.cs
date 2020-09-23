@@ -291,17 +291,11 @@ public static class SpriteExploder {
 
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
+        rigidbody.mass = 10;
         rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
-        rigidbody.velocity = origVelocity/2;
+        rigidbody.velocity = origVelocity; //   /2 ?
 
         piece.AddComponent<RewindScript>();
-
-        //Test test = piece.AddComponent<Test>();
-        //test.Step = source.GetComponent<Test>().Step + 1;
-        //Explodable expl = piece.AddComponent<Explodable>();
-        //expl.allowRuntimeFragmentation = true;
-        //expl.shatterType = Explodable.ShatterType.Voronoi;
-        //expl.extraPoints = 0;
 
 
         return piece;

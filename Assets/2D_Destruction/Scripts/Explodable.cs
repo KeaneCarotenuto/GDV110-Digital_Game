@@ -183,10 +183,10 @@ public class Explodable : MonoBehaviour
     {
         foreach (GameObject item in BreaksOnContactWith)
         {
-            if (GetComponent<RewindScript>().playback == false && collision.gameObject == item)
+            if ((GetComponent<RewindScript>() ? GetComponent<RewindScript>().playback == false : true) && collision.gameObject == item)
             {
                 GetComponent<Explodable>().explode();
-                GetComponent<RewindScript>().recordedTrans.Insert(0, new StoredTransform(Time.time, transform.position, transform.rotation, true));
+                if(GetComponent<RewindScript>()) GetComponent<RewindScript>().recordedTrans.Insert(0, new StoredTransform(Time.time, transform.position, transform.rotation, true));
             }
         }
 
