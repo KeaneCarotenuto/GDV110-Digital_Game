@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D wallBox;
     public SpriteRenderer sRend;
 
+    private Animator anim;
+
 
 
     // Start is called before the first frame update
@@ -51,8 +53,14 @@ public class PlayerMovement : MonoBehaviour
         ctrl.Player.ReverseTime.performed += ctx => OnReverseTimePerformed(ctx);
         ctrl.Player.ReverseTime.canceled += ctx => OnReverseTimeCancelled(ctx);
         ctrl.Enable();
+
+        anim = GetComponent<Animator>();
     }
 
+    void Update()
+    {
+        UpdateAnimations();
+    }
 
     void FixedUpdate()
     {
@@ -116,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
     //JUMPING
 
     public void OnJumpStart(InputAction.CallbackContext ctx)
@@ -171,6 +180,15 @@ public class PlayerMovement : MonoBehaviour
     public void OnMoveCancelled(InputAction.CallbackContext ctx)
     {
         IsMoving = false;
+    }
+
+    //ANIMATIONS
+
+    public void UpdateAnimations()
+    {
+        anim.SetBool("isMoving", IsMoving);
+        anim.SetBool("isGrounded", IsGrounded);
+        anim.SetFloat("yVelocity", player.velocity.y);
     }
    
 }
