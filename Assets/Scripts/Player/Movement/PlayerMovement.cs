@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             leavesGroundTime = 0;
             IsGrounded = false;
             IsJumping = true;
-            player.AddForce(Vector2.up * 500);
+            player.AddForce(Vector2.up * 700);
         }
 
         player.AddForce(Vector2.right * -player.velocity.x * Drag);
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (JumpTime > 0 && IsJumping)
         {
 
-            float exp = 2.5f;
+            float exp = 3.1f;
             player.AddForce(Vector2.up * (Mathf.Exp(-(1 - (JumpTime / defaultJumpTime)) + exp) - Mathf.Exp(-1 + exp)));
         }
 
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!IsGrounded)
         {
-            player.AddForce(Vector2.up * -15);
+            player.AddForce(Vector2.up * -30);
         }
 
         if(IsMoving /*&& IsGrounded*/)
@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (onWall && !IsGrounded)
         {
-            player.AddForce(new Vector2(-MoveDirection * 500, 500));
+            player.AddForce(new Vector2(-MoveDirection * 500, 700));
             onWall = false;
         }
     }
