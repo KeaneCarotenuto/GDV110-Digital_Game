@@ -34,7 +34,7 @@ public class RewindScript : MonoBehaviour
     {
         //Debug.Log(recordedTrans[0].pos);
 
-        if (Input.GetMouseButtonDown(0) && false)   ///REMOVE FALSE
+        /*(if (Input.GetMouseButtonDown(0) && false)   ///REMOVE FALSE
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -63,7 +63,7 @@ public class RewindScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift) && playback == true)
         {
             StopPlayback();
-        }        
+        }  */      
     }
 
     void FixedUpdate()
