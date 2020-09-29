@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (onWall && IsMoving )
+        if (onWall && IsMoving && player.velocity.y < 0 )
         {
             player.velocity *= 0.5f;
         }
