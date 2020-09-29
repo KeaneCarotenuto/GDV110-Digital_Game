@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D wallBox;
     public SpriteRenderer sRend;
 
+    private Animator anim;
+
 
 
     // Start is called before the first frame update
@@ -51,12 +53,18 @@ public class PlayerMovement : MonoBehaviour
         ctrl.Player.ReverseTime.performed += ctx => OnReverseTimePerformed(ctx);
         ctrl.Player.ReverseTime.canceled += ctx => OnReverseTimeCancelled(ctx);
         ctrl.Enable();
+
+        anim = GetComponent<Animator>();
     }
 
+    void Update()
+    {
+        UpdateAnimations();
+    }
 
     void FixedUpdate()
     {
-        if (onWall && IsMoving )
+        if (onWall && IsMoving && player.velocity.y < 0 )
         {
             player.velocity *= 0.5f;
         }
@@ -70,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             leavesGroundTime = 0;
             IsGrounded = false;
             IsJumping = true;
-            player.AddForce(Vector2.up * 500);
+            player.AddForce(Vector2.up * 700);
         }
 
         player.AddForce(Vector2.right * -player.velocity.x * Drag);
@@ -79,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (JumpTime > 0 && IsJumping)
         {
 
-            float exp = 2.5f;
+            float exp = 3.1f;
             player.AddForce(Vector2.up * (Mathf.Exp(-(1 - (JumpTime / defaultJumpTime)) + exp) - Mathf.Exp(-1 + exp)));
         }
 
@@ -91,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!IsGrounded)
         {
-            player.AddForce(Vector2.up * -15);
+            player.AddForce(Vector2.up * -30);
         }
 
         if(IsMoving /*&& IsGrounded*/)
@@ -116,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
     //JUMPING
 
     public void OnJumpStart(InputAction.CallbackContext ctx)
@@ -124,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (onWall && !IsGrounded)
         {
-            player.AddForce(new Vector2(-MoveDirection * 500, 500));
+            player.AddForce(new Vector2(-MoveDirection * 500, 700));
             onWall = false;
         }
     }
@@ -171,6 +180,15 @@ public class PlayerMovement : MonoBehaviour
     public void OnMoveCancelled(InputAction.CallbackContext ctx)
     {
         IsMoving = false;
+    }
+
+    //ANIMATIONS
+
+    public void UpdateAnimations()
+    {
+        anim.SetBool("isMoving", IsMoving);
+        anim.SetBool("isGrounded", IsGrounded);
+        anim.SetFloat("yVelocity", player.velocity.y);
     }
    
 }
