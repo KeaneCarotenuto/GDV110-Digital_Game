@@ -10,18 +10,34 @@ public class PlayerMovement : MonoBehaviour
 
     
     public PlayerControls ctrl;
-    public bool IsGrounded = true;
-    public bool IsJumping = false;
-    public float JumpTime = 0.5f;
-    private float MoveDirection = 0;
-    public bool IsMoving = false;
+    public bool IsGrounded;
+    public float leavesGroundTime;
+    public bool IsJumping;
+    public float JumpTime;
+    public float defaultJumpTime;
+    public float preJumpTime;
+
+    public float MaxSpeed;
+    public float Acceleration;
+    public float Drag;
+    private float MoveDirection;
+    public bool IsMoving;
+
+    public bool onWall;
+
     public Rigidbody2D player;
+    public CapsuleCollider2D hitBox;
+    public CircleCollider2D groundBox;
+    public BoxCollider2D wallBox;
+    public SpriteRenderer sRend;
 
 
 
     // Start is called before the first frame update
     void Awake()
     {
+        defaultJumpTime = JumpTime;
+
         ctrl = new PlayerControls();
         ctrl.Player.Move.started += ctx => OnMoveStart(ctx);
         ctrl.Player.Move.performed += ctx => OnMovePerformed(ctx);
@@ -37,27 +53,66 @@ public class PlayerMovement : MonoBehaviour
         ctrl.Enable();
     }
 
-    
+
     void FixedUpdate()
     {
-        if(IsJumping && JumpTime > 0 && !IsGrounded)
+        if (onWall && IsMoving )
         {
-            player.AddForce(Vector2.up*50);
+            player.velocity *= 0.5f;
+        }
+        else
+        {
+            
+        }
+
+        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < 0.1f)
+        {
+            leavesGroundTime = 0;
+            IsGrounded = false;
+            IsJumping = true;
+            player.AddForce(Vector2.up * 500);
+        }
+
+        player.AddForce(Vector2.right * -player.velocity.x * Drag);
+
+
+        if (JumpTime > 0 && IsJumping)
+        {
+
+            float exp = 2.5f;
+            player.AddForce(Vector2.up * (Mathf.Exp(-(1 - (JumpTime / defaultJumpTime)) + exp) - Mathf.Exp(-1 + exp)));
+        }
+
+        if (JumpTime > 0 && !IsGrounded)
+        {
+            player.AddForce(Vector2.up * 5);
             JumpTime -= Time.deltaTime;
         }
-        if(IsMoving && IsGrounded)
+
+        if (!IsGrounded)
+        {
+            player.AddForce(Vector2.up * -15);
+        }
+
+        if(IsMoving /*&& IsGrounded*/)
         {
             if(MoveDirection == 1)
             {
-                player.AddForce(Vector2.right * 200);
+                hitBox.offset = new Vector2(Mathf.Abs(hitBox.offset.x), hitBox.offset.y);
+                groundBox.offset = new Vector2(Mathf.Abs(groundBox.offset.x), groundBox.offset.y);
+                wallBox.offset = new Vector2(Mathf.Abs(wallBox.offset.x), wallBox.offset.y);
+                sRend.flipX = false;
+                player.AddForce(Vector2.right * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
             }
             else if(MoveDirection == -1)
             {
-                player.AddForce(Vector2.left * 200);
+                hitBox.offset = new Vector2(-Mathf.Abs(hitBox.offset.x), hitBox.offset.y);
+                groundBox.offset = new Vector2(-Mathf.Abs(groundBox.offset.x), groundBox.offset.y);
+                wallBox.offset = new Vector2(-Mathf.Abs(wallBox.offset.x), wallBox.offset.y);
+                player.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                player.AddForce(Vector2.left * Acceleration * (1- (Mathf.Abs(player.velocity.x) / MaxSpeed)));
             }
         }
-        
-        
     }
 
 
@@ -65,13 +120,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJumpStart(InputAction.CallbackContext ctx)
     {
-        if(IsGrounded)
+        preJumpTime = Time.time;
+
+        if (onWall && !IsGrounded)
         {
-            IsGrounded = false;
-            IsJumping = true;
-            player.AddForce(Vector2.up*10000);
+            player.AddForce(new Vector2(-MoveDirection * 500, 500));
+            onWall = false;
         }
-        Debug.Log("Boing");
     }
 
     public void OnJumpPerformed(InputAction.CallbackContext ctx)
@@ -116,15 +171,6 @@ public class PlayerMovement : MonoBehaviour
     public void OnMoveCancelled(InputAction.CallbackContext ctx)
     {
         IsMoving = false;
-    }
-
-    //COLLISION
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        IsGrounded = true;
-        JumpTime = 0.5f;
-        
     }
    
 }
