@@ -340,6 +340,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isMoving", IsMoving);
         anim.SetBool("isGrounded", IsGrounded);
         anim.SetFloat("yVelocity", player.velocity.y);
+        anim.SetBool("onWall", onWall);
     }
    
 }
