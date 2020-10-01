@@ -205,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (onWall)
         {
+            Debug.Log("Jump" + player.velocity);
             player.AddForce(new Vector2(-MoveDirection * 500, 700));
             onWall = false;
         }
