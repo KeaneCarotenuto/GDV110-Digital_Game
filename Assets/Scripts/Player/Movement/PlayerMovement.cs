@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     {
         preJumpTime = Time.time;
 
-        if (onWall && !IsGrounded)
+        if (onWall)
         {
             player.AddForce(new Vector2(-MoveDirection * 500, 700));
             onWall = false;
