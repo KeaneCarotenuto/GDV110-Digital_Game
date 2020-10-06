@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public bool handOnWall;
     [HideInInspector] public bool GapOverWall;
-    public bool OnLedge;
+    [HideInInspector] public bool OnLedge;
 
 
 
@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer sRend;
     public TimeManager timeManager;
     public ParticleSystem rewindParticles;
+    public GameObject effects;
     private Animator anim;
     
 
@@ -370,6 +371,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isGrounded", IsGrounded);
         anim.SetFloat("yVelocity", player.velocity.y);
         anim.SetBool("onWall", onWall);
+        anim.SetBool("onLedge", OnLedge);
     }
 
     public void PowerEffects()
@@ -386,11 +388,13 @@ public class PlayerMovement : MonoBehaviour
             else
             {
             rewindParticles.Play();
+            effects.SetActive(true);
             }
         }
         else if(!timeReversed && currentTimeScale >= 0.9)
         {
             rewindParticles.Stop();
+            effects.SetActive(false);
             //rewindParticles.Clear();
         }
     }
