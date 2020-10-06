@@ -5,21 +5,26 @@ using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
+    
     public PlayerControls ctrl;
+    [Header("References")]
     public AudioSource music;
+    [Header("Events")]
     public UnityEvent OnTimeReverse;
     public UnityEvent OnTimeNormalise;
 
+    [Header("Time Configuration")]
     [Tooltip("The current speed of time between 1 (normal) and -1 (reversed)")] [Range(-1.0f, 1.0f)] public float timeScale = 1.0f;
-
     [Tooltip("The speed time reverses at while ability is active")] [Range(1.0f, 10.0f)] public float timeReverseSpeed = 1;
     [Tooltip("The speed at which time returns to normal when the ability is not active")] [Range(1.0f, 10.0f)] public float timeNormaliseSpeed = 1;
+    [Header("Player Ability Configuration")]
     [Range(0f, 100f)] public float abilityCost = 10;
     [Range(0f, 100f)] public float sandRegenRate = 1;
     [Range(0f, 100f)] public float currentSand;
     private float timeScale_MIN = -1f, timeScale_MAX = 1f, sand_MIN = 0f, sand_MAX = 100f;
 
-    public bool timeIsReversed, powerActive, sandRemaining;
+    [Header("Is")]
+    public bool timeReversed, powerActive, sandRemaining;
     
 
 
@@ -30,7 +35,7 @@ public class TimeManager : MonoBehaviour
     void Awake()
     {
         ctrl = new PlayerControls();
-        timeIsReversed = false;
+        timeReversed = false;
         currentSand = sand_MAX;
         ctrl.Player.ReverseTime.started += ctx => enablePower();
         ctrl.Player.ReverseTime.canceled += ctx => disablePower();
@@ -43,14 +48,14 @@ public class TimeManager : MonoBehaviour
     {
         if (timeScale - 0.001f*timeReverseSpeed > timeScale_MIN && powerActive) { timeScale -= 0.001f * timeReverseSpeed; }
         else if (timeScale + 0.001f * timeNormaliseSpeed < timeScale_MAX && !powerActive) { timeScale += 0.001f * timeNormaliseSpeed; }
-        if (timeScale < 0 && (!timeIsReversed)) 
+        if (timeScale < 0 && (!timeReversed)) 
         { 
-            timeIsReversed = true;
+            timeReversed = true;
             OnTimeReverse.Invoke();
         }
-        else if(timeScale > 0 && timeIsReversed)
+        else if(timeScale > 0 && timeReversed)
         { 
-            timeIsReversed = false;
+            timeReversed = false;
             OnTimeNormalise.Invoke();
         }
         music.pitch = timeScale;
