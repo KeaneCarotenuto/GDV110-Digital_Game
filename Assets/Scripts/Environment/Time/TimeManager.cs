@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
     public PlayerControls ctrl;
     public AudioSource music;
-
+    public UnityEvent OnTimeReverse;
+    public UnityEvent OnTimeNormalise;
 
     [Tooltip("The current speed of time between 1 (normal) and -1 (reversed)")] [Range(-1.0f, 1.0f)] public float timeScale = 1.0f;
 
@@ -34,8 +36,16 @@ public class TimeManager : MonoBehaviour
     {
         if (timeScale - 0.001f*timeReverseSpeed > timeScale_MIN && powerActive) { timeScale -= 0.001f * timeReverseSpeed; }
         else if (timeScale + 0.001f * timeReverseSpeed < timeScale_MAX && !powerActive) { timeScale += 0.001f * timeNormaliseSpeed; }
-        if (timeScale < 0) { timeIsReversed = true; }
-        else { timeIsReversed = false; }
+        if (timeScale < 0 && (!timeIsReversed)) 
+        { 
+            timeIsReversed = true;
+            OnTimeReverse.Invoke();
+        }
+        else if(timeScale > 0 && timeIsReversed)
+        { 
+            timeIsReversed = false;
+            OnTimeNormalise.Invoke();
+        }
         music.pitch = timeScale;
         Time.timeScale = System.Math.Abs(timeScale);
     }
