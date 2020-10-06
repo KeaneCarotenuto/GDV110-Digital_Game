@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float preJumpTime;
     [HideInInspector] public bool onWall;
 
+    [HideInInspector] public bool handOnWall;
+    [HideInInspector] public bool GapOverWall;
+    public bool OnLedge;
+
 
 
     [Header("Moving")]
@@ -83,13 +87,16 @@ public class PlayerMovement : MonoBehaviour
         LeftRightMovement();
 
         //Walls
+        OnLedgeCheck();
         WallSlide();
+
 
         //Jumping
         InitialJump();
         UpwardsForce();
         DownwardsForce();
         HoldingJump();
+        onWall = false;
     }
 
 
@@ -147,10 +154,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void MoveRight()
     {
-        hitBox.offset = new Vector2(Mathf.Abs(hitBox.offset.x), hitBox.offset.y);
-        groundBox.offset = new Vector2(Mathf.Abs(groundBox.offset.x), groundBox.offset.y);
-        wallBox.offset = new Vector2(Mathf.Abs(wallBox.offset.x), wallBox.offset.y);
-        sRend.flipX = false;
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
         //Manages how fast the player can move, and hwo fast they get to that speed.
         player.AddForce(Vector2.right * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
@@ -162,10 +166,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void MoveLeft()
     {
-        hitBox.offset = new Vector2(-Mathf.Abs(hitBox.offset.x), hitBox.offset.y);
-        groundBox.offset = new Vector2(-Mathf.Abs(groundBox.offset.x), groundBox.offset.y);
-        wallBox.offset = new Vector2(-Mathf.Abs(wallBox.offset.x), wallBox.offset.y);
-        player.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
         //Manages how fast the player can move, and hwo fast they get to that speed.
         player.AddForce(Vector2.left * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
@@ -187,6 +188,33 @@ public class PlayerMovement : MonoBehaviour
     #region Wall Movement
 
     /// <summary>
+    /// Checks to see if the player is on a ledge, then stops them from moving
+    /// </summary>
+    private void OnLedgeCheck()
+    {
+        if (handOnWall && GapOverWall && player.velocity.y <= 0)
+        {
+            OnLedge = true;
+        }
+        else
+        {
+            OnLedge = false;
+        }
+
+        if (OnLedge == true)
+        {
+            IsJumping = false;
+
+            player.velocity = new Vector2(player.velocity.x * 0.9f, 0);
+            player.gravityScale = 0;
+        }
+        else
+        {
+            player.gravityScale = 1;
+        }
+    }
+
+    /// <summary>
     /// Used to check if the player should be slowed down while on a wall
     /// </summary>
     private void WallSlide()
@@ -194,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
         if (onWall && IsMoving && player.velocity.y < 0)
         {
             player.velocity *= 0.5f;
+            player.velocity = new Vector2(player.velocity.x * 0.2f, player.velocity.y * 0.5f);
         }
     }
 
@@ -251,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void DownwardsForce()
     {
-        if (!IsGrounded)
+        if (!IsGrounded && !OnLedge)
         {
             player.AddForce(Vector2.up * -30);
         }
