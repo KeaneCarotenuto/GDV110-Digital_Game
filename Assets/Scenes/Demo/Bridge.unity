@@ -826,7 +826,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 71a932ac7cfb9804791d64ef5f9205a2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c68906d38a829b94f87e9cedf8aa89c8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.59
   m_Pitch: 1
@@ -1249,6 +1249,7 @@ MonoBehaviour:
   music: {fileID: 857560509}
   timeScale: 1
   timeReverseSpeed: 2
+  timeNormaliseSpeed: 1
   timeIsReversed: 0
   powerActive: 0
 --- !u!4 &1371702572
@@ -4964,11 +4965,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1045664088}
-    - target: {fileID: 8246111434661272960, guid: 2b0e04041dddd7c4d81156017b5e9674,
-        type: 3}
-      propertyPath: m_NotificationBehavior
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8246111434661272961, guid: 2b0e04041dddd7c4d81156017b5e9674,
         type: 3}
       propertyPath: m_LocalPosition.x
