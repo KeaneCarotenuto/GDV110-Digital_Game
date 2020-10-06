@@ -363,7 +363,7 @@ public class PlayerMovement : MonoBehaviour
         else if(!timeReversed && currentTimeScale >= 0.9)
         {
             rewindParticles.Stop();
-            rewindParticles.Clear();
+            //rewindParticles.Clear();
         }
     }
 

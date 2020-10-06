@@ -497,8 +497,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1642811964}
+  m_LookAt: {fileID: 657291614}
+  m_Follow: {fileID: 657291614}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 5
@@ -1074,6 +1074,7 @@ GameObject:
   - component: {fileID: 1045664088}
   - component: {fileID: 1045664087}
   - component: {fileID: 1045664086}
+  - component: {fileID: 1045664090}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1179,6 +1180,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045664090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045664085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1113536080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1287,7 @@ MonoBehaviour:
   music: {fileID: 857560509}
   timeScale: 1
   timeReverseSpeed: 2
+  timeNormaliseSpeed: 10
   timeIsReversed: 0
   powerActive: 0
 --- !u!4 &1371702572
@@ -1405,8 +1438,8 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.45
-  m_DeadZoneHeight: 0.41
+  m_DeadZoneWidth: 0.15
+  m_DeadZoneHeight: 0.4
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.71
@@ -1622,12 +1655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Step: 0
---- !u!4 &1642811964 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8246111434661272961, guid: 2b0e04041dddd7c4d81156017b5e9674,
-    type: 3}
-  m_PrefabInstance: {fileID: 8246111434400581805}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1722233758
 GameObject:
   m_ObjectHideFlags: 0
