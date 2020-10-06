@@ -30,7 +30,9 @@ public class RewindScript : MonoBehaviour
     {
         
         manager = GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeManager>();
-        recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation));
+        recordedTrans.Insert(0, new StoredTransform(Time.time, transform.position, transform.rotation));
+        manager.OnTimeReverse.AddListener(StartPlayback);
+        manager.OnTimeNormalise.AddListener(StopPlayback);
     }
 
     private void Update()
