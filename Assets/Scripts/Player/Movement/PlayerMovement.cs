@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
     [HideInInspector] public bool onWall;
+    [HideInInspector] public bool timeReversed;
+    [HideInInspector] public float currentTimeScale;
+
 
 
 
@@ -42,7 +45,8 @@ public class PlayerMovement : MonoBehaviour
     public CircleCollider2D groundBox;
     public BoxCollider2D wallBox;
     public SpriteRenderer sRend;
-
+    public TimeManager timeManager;
+    public ParticleSystem rewindParticles;
     private Animator anim;
     
 
@@ -68,14 +72,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-    void Update()
-    {
-        UpdateAnimations();
-    }
-
-
-
     void FixedUpdate()
     {
         //Movement
@@ -90,6 +86,10 @@ public class PlayerMovement : MonoBehaviour
         UpwardsForce();
         DownwardsForce();
         HoldingJump();
+
+        //Animation and Effects
+        UpdateAnimations();
+        PowerEffects();
     }
 
 
@@ -343,5 +343,28 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("yVelocity", player.velocity.y);
         anim.SetBool("onWall", onWall);
     }
-   
+
+    public void PowerEffects()
+    {
+        timeReversed = timeManager.timeIsReversed;
+        currentTimeScale = timeManager.timeScale;
+
+        if (currentTimeScale < 0.99 || timeReversed)
+        {
+            if (rewindParticles.isEmitting)
+            {
+            return;
+            }
+            else
+            {
+            rewindParticles.Play();
+            }
+        }
+        else if(!timeReversed && currentTimeScale >= 0.9)
+        {
+            rewindParticles.Stop();
+            rewindParticles.Clear();
+        }
+    }
+
 }
