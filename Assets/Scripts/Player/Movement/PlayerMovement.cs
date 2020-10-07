@@ -23,10 +23,12 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
     [HideInInspector] public bool onWall;
+    [HideInInspector] public bool timeReversed;
+    [HideInInspector] public float currentTimeScale;
 
     [HideInInspector] public bool handOnWall;
     [HideInInspector] public bool GapOverWall;
-    public bool OnLedge;
+    [HideInInspector] public bool OnLedge;
 
 
 
@@ -46,7 +48,9 @@ public class PlayerMovement : MonoBehaviour
     public CircleCollider2D groundBox;
     public BoxCollider2D wallBox;
     public SpriteRenderer sRend;
-
+    public TimeManager timeManager;
+    public ParticleSystem rewindParticles;
+    public GameObject effects;
     private Animator anim;
     
 
@@ -72,14 +76,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-    void Update()
-    {
-        UpdateAnimations();
-    }
-
-
-
     void FixedUpdate()
     {
         //Movement
@@ -97,6 +93,10 @@ public class PlayerMovement : MonoBehaviour
         DownwardsForce();
         HoldingJump();
         onWall = false;
+
+        //Animation and Effects
+        UpdateAnimations();
+        PowerEffects();
     }
 
 
@@ -371,6 +371,32 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isGrounded", IsGrounded);
         anim.SetFloat("yVelocity", player.velocity.y);
         anim.SetBool("onWall", onWall);
+        anim.SetBool("onLedge", OnLedge);
     }
-   
+
+    public void PowerEffects()
+    {
+        timeReversed = timeManager.timeIsReversed;
+        currentTimeScale = timeManager.timeScale;
+
+        if (currentTimeScale < 0.99 || timeReversed)
+        {
+            if (rewindParticles.isEmitting)
+            {
+            return;
+            }
+            else
+            {
+            rewindParticles.Play();
+            effects.SetActive(true);
+            }
+        }
+        else if(!timeReversed && currentTimeScale >= 0.9)
+        {
+            rewindParticles.Stop();
+            effects.SetActive(false);
+            //rewindParticles.Clear();
+        }
+    }
+
 }
