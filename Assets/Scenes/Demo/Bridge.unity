@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Follow: {fileID: 657291614}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -570,7 +570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325999067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.99, y: 3.3800004, z: -10}
+  m_LocalPosition: {x: 40.72, y: 3.7000005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1476198905}
@@ -2780,7 +2780,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2804,7 +2804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045664085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.99, y: 3.3800004, z: -10}
+  m_LocalPosition: {x: 40.72, y: 3.7000005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3003,7 +3003,7 @@ MonoBehaviour:
   abilityCost: 10
   sandRegenRate: 5
   currentSand: 0
-  timeIsReversed: 0
+  timeReversed: 0
   powerActive: 0
   sandRemaining: 0
 --- !u!4 &1371702572
@@ -21563,15 +21563,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 318217468644967282, guid: 2b0e04041dddd7c4d81156017b5e9674,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 318217468993992598, guid: 2b0e04041dddd7c4d81156017b5e9674,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.99
+      value: 40.72
       objectReference: {fileID: 0}
     - target: {fileID: 318217468993992598, guid: 2b0e04041dddd7c4d81156017b5e9674,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.38
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 318217468993992598, guid: 2b0e04041dddd7c4d81156017b5e9674,
         type: 3}
