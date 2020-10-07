@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RewindScript : MonoBehaviour
 {
-
+    TimeManager manager;
+    
     public class StoredTransform
     {
         public bool initial;
@@ -27,7 +28,11 @@ public class RewindScript : MonoBehaviour
 
     private void Awake()
     {
-        recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation));
+        
+        manager = GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeManager>();
+        recordedTrans.Insert(0, new StoredTransform(Time.time, transform.position, transform.rotation));
+        manager.OnTimeReverse.AddListener(StartPlayback);
+        manager.OnTimeNormalise.AddListener(StopPlayback);
     }
 
     private void Update()
