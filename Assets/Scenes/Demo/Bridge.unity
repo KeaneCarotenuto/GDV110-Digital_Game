@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 6926245}
   - component: {fileID: 6926244}
   m_Layer: 0
-  m_Name: ConstantEffects
+  m_Name: Vignette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Follow: {fileID: 657291614}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 8
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -570,7 +570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325999067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.72, y: 3.7000005, z: -10}
+  m_LocalPosition: {x: 40.99, y: 3.3800006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1476198905}
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Step: 0
   audioSource: {fileID: 362861723}
-  shatterClip: {fileID: 8300000, guid: b4fe37a4496688949869e62ced36a6ed, type: 3}
+  shatterClip: {fileID: 8300000, guid: 1bf7d35dc61b61a408aa5a1af035fe36, type: 3}
 --- !u!82 &362861723
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2780,7 +2780,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2804,7 +2804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045664085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.72, y: 3.7000005, z: -10}
+  m_LocalPosition: {x: 40.99, y: 3.3800006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3699,7 +3699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Step: 0
   audioSource: {fileID: 1651401390}
-  shatterClip: {fileID: 8300000, guid: b4fe37a4496688949869e62ced36a6ed, type: 3}
+  shatterClip: {fileID: 8300000, guid: 1bf7d35dc61b61a408aa5a1af035fe36, type: 3}
 --- !u!82 &1651401390
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4135,7 +4135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Step: 0
   audioSource: {fileID: 1742845212}
-  shatterClip: {fileID: 8300000, guid: b4fe37a4496688949869e62ced36a6ed, type: 3}
+  shatterClip: {fileID: 8300000, guid: 1bf7d35dc61b61a408aa5a1af035fe36, type: 3}
 --- !u!82 &1742845212
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21470,7 +21470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Step: 0
   audioSource: {fileID: 2113308545}
-  shatterClip: {fileID: 8300000, guid: 9ac3459dea52c8b44afae3a3cf97db9c, type: 3}
+  shatterClip: {fileID: 8300000, guid: e832865f3dd12d049b3d644f30f67389, type: 3}
 --- !u!50 &2113308549
 Rigidbody2D:
   serializedVersion: 4
