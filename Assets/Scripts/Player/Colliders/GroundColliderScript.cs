@@ -17,5 +17,7 @@ public class GroundColliderScript : MonoBehaviour
         pmScript.IsJumping = false;
         pmScript.JumpTime = pmScript.defaultJumpTime;
         pmScript.leavesGroundTime = Time.time;
+
+        pmScript.onWall = false;
     }
 }

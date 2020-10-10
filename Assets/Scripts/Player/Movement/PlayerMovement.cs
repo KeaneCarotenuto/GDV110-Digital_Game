@@ -17,15 +17,17 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Exponential Force Applied while holding jump")] [Range(0.0f, 5.0f)] public float exp;
     [Tooltip("Pressing space __ seconds before hitting the still lets you jump")] [Range(0.0f, 1.0f)] public float preGroundTime;
 
-    [HideInInspector] public bool IsGrounded;
+    public bool IsGrounded;
     [HideInInspector] public float leavesGroundTime;
-    [HideInInspector] public bool IsJumping;
+    public bool IsJumping;
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
-    [HideInInspector] public bool onWall;
+    public bool onWall;
+    [HideInInspector] public bool timeReversed;
+    [HideInInspector] public float currentTimeScale;
 
-    [HideInInspector] public bool handOnWall;
-    [HideInInspector] public bool GapOverWall;
+    public bool handOnWall;
+    public bool GapOverWall;
     public bool OnLedge;
 
 
@@ -46,7 +48,9 @@ public class PlayerMovement : MonoBehaviour
     public CircleCollider2D groundBox;
     public BoxCollider2D wallBox;
     public SpriteRenderer sRend;
-
+    public TimeManager timeManager;
+    public ParticleSystem rewindParticles;
+    public GameObject effects;
     private Animator anim;
     
 
@@ -72,14 +76,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-    void Update()
-    {
-        UpdateAnimations();
-    }
-
-
-
     void FixedUpdate()
     {
         //Movement
@@ -90,13 +86,15 @@ public class PlayerMovement : MonoBehaviour
         OnLedgeCheck();
         WallSlide();
 
-
         //Jumping
         InitialJump();
         UpwardsForce();
         DownwardsForce();
         HoldingJump();
-        onWall = false;
+
+        //Animation and Effects
+        UpdateAnimations();
+        PowerEffects();
     }
 
 
@@ -232,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void WallJump()
     {
-        if (onWall)
+        if (onWall && !IsGrounded)
         {
             Debug.Log("Jump" + player.velocity);
             player.AddForce(new Vector2(-MoveDirection * 500, 700));
@@ -252,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void InitialJump()
     {
-        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < preGroundTime)
+        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < preGroundTime &&  !onWall)
         {
             leavesGroundTime = 0;
             IsGrounded = false;
@@ -370,7 +368,33 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isMoving", IsMoving);
         anim.SetBool("isGrounded", IsGrounded);
         anim.SetFloat("yVelocity", player.velocity.y);
-        anim.SetBool("onWall", onWall);
+        anim.SetBool("onWall", (OnLedge ? false : onWall));
+        anim.SetBool("onLedge", OnLedge);
     }
-   
+
+    public void PowerEffects()
+    {
+        timeReversed = timeManager.timeReversed;
+        currentTimeScale = timeManager.timeScale;
+
+        if (currentTimeScale < 0.99 || timeReversed)
+        {
+            if (rewindParticles.isEmitting)
+            {
+            return;
+            }
+            else
+            {
+            rewindParticles.Play();
+            effects.SetActive(true);
+            }
+        }
+        else if(!timeReversed && currentTimeScale >= 0.9)
+        {
+            rewindParticles.Stop();
+            effects.SetActive(false);
+            //rewindParticles.Clear();
+        }
+    }
+
 }
