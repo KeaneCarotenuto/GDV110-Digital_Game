@@ -21628,6 +21628,17 @@ PrefabInstance:
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 1371702571}
+    - target: {fileID: 318217469172552258, guid: 2b0e04041dddd7c4d81156017b5e9674,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8879801946381886910, guid: 2b808af09d10aff44b80f9bb28db89ab,
+        type: 3}
+    - target: {fileID: 318217469172552258, guid: 2b0e04041dddd7c4d81156017b5e9674,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d94fca7d57e67574cbc2578ad3162766, type: 2}
     - target: {fileID: 318217469172552268, guid: 2b0e04041dddd7c4d81156017b5e9674,
         type: 3}
       propertyPath: m_Name
