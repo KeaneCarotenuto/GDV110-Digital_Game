@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535f8e525ff367c4ba67961e201a05ed, type: 3}
-  m_Name: RandomRock
+  m_Name: RandomSmallRockBackground
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34,4 +34,12 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  m_Sprites: []
+  m_Sprites:
+  - {fileID: -4854428728226623984, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: 6782755297178752561, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: -2236182596594143539, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: -408374697745620510, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: -7806843325438270353, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: -8050525345359484426, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: -7013935231637670462, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
+  - {fileID: 1108946895839335701, guid: 4313c948cef87904c9a416e11161e2f7, type: 3}
