@@ -7,10 +7,16 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: WaterReflectionMat
   m_Shader: {fileID: -6465566751694194690, guid: 08ced9baf7e232b41a7c074d10c782b1,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+=======
+  m_Name: New Material
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_ShaderKeywords: 
+>>>>>>> Nerys2
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +26,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+<<<<<<< HEAD
     - Texture2D_DB11F294:
         m_Texture: {fileID: 2800000, guid: a8e038ab0875597438db2c682e481d32, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -28,6 +35,8 @@ Material:
         m_Texture: {fileID: 8400000, guid: 5b356ee5a13be6845b9985c21105afd5, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+=======
+>>>>>>> Nerys2
     - _AlphaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -45,8 +54,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+<<<<<<< HEAD
     - Vector1_5515FD1A: 0.54
     - Vector1_EECAF9CC: 0.1
+=======
+>>>>>>> Nerys2
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
