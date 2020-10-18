@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5267641123623527539}
   m_Layer: 0
   m_Name: FallingPot
-  m_TagString: Untagged
+  m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,4 +183,4 @@ MonoBehaviour:
   - {x: -0.8163209, y: -0.6187309, z: 0}
   m_ShapePathHash: -1151940685
   m_Mesh: {fileID: 0}
-  m_InstanceId: -382322
+  m_InstanceId: 704678
