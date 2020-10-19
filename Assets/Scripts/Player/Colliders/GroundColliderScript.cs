@@ -13,7 +13,7 @@ public class GroundColliderScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Time.time - pmScript.preJumpTime > pmScript.preGroundTime)
+        if (Time.time - pmScript.preJumpTime > pmScript.preGroundTime && !collision.isTrigger)
         {
             pmScript.IsGrounded = true;
             pmScript.IsJumping = false;
