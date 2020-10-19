@@ -32,24 +32,5 @@ public class DoorScript : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.white;
         }
 
-        //if (open)
-        //{
-        //    transform.localScale = Vector3.Lerp(scale, new Vector3(scale.x, 0, scale.z), 0.1f);
-        //}
-        //else
-        //{
-        //    transform.localScale = Vector3.Lerp(scale, new Vector3(scale.x, origScale.y, scale.z), 0.1f);
-        //}
-
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        overlapping = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        overlapping = false;
     }
 }
