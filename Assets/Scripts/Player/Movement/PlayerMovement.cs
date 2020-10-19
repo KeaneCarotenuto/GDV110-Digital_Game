@@ -251,7 +251,7 @@ public bool IsJumping;
             preWallJumpTime = Time.time;
             Debug.Log("Jump" + player.velocity);
             float horizDir = (!IsMoving || MoveDirection != wallDirection ? 1 : 0);
-            float vertDir = ((wallDirection == MoveDirection && OnLedge) || wallDirection != MoveDirection || !IsMoving ? 1 : 0);
+            float vertDir = ((wallDirection == MoveDirection && (OnLedge || GapOverWall) ) || wallDirection != MoveDirection || !IsMoving ? 1 : 0);
 
             player.AddForce(new Vector2(horizDir * -wallDirection * 500, vertDir * 700));
             Debug.Log("Wall Jump Force");
