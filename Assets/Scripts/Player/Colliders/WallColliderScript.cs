@@ -13,7 +13,11 @@ public class WallColliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!pmScript.IsGrounded) pmScript.onWall = true;
+        if (!pmScript.IsGrounded)
+        {
+            pmScript.onWall = true;
+            pmScript.wallDirection = pmScript.MoveDirection;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -193,6 +193,7 @@ MonoBehaviour:
   handOnWall: 0
   GapOverWall: 0
   OnLedge: 0
+  postWallJumpTime: 0.2
   MaxSpeed: 20
   Acceleration: 50
   Drag: 5

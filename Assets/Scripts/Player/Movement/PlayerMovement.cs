@@ -22,13 +22,16 @@ public class PlayerMovement : MonoBehaviour
     public bool IsJumping;
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
-    public bool onWall;
     [HideInInspector] public bool timeReversed;
     [HideInInspector] public float currentTimeScale;
 
     public bool handOnWall;
     public bool GapOverWall;
+    public float preWallJumpTime;
+    public float postWallJumpTime;
+    public float wallDirection;
     public bool OnLedge;
+    public bool onWall;
 
 
 
@@ -37,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Horiz Acceleration force")] [Range(0.0f, 100.0f)] public float Acceleration;
     [Tooltip("Horiz Drag force")] [Range(0.0f, 100.0f)] public float Drag;
 
-    [HideInInspector] private float MoveDirection;
+    [HideInInspector] public float MoveDirection;
     [HideInInspector] public bool IsMoving;
 
 
@@ -63,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         IsGrounded = false;
         IsJumping = false;
+        GapOverWall = true;
         leavesGroundTime = -100;
         preJumpTime = -100;
 
@@ -132,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void LeftRightMovement()
     {
-        if (IsMoving /*&& IsGrounded*/)
+        if (IsMoving && Time.time > preWallJumpTime + postWallJumpTime && !onWall && !OnLedge)
         {
             if (MoveDirection == 1)
             {
@@ -176,7 +180,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ApplyDrag()
     {
-        player.AddForce(Vector2.right * -player.velocity.x * Drag);
+        if (Time.time > preWallJumpTime + postWallJumpTime)
+        {
+            player.AddForce(Vector2.right * -player.velocity.x * Drag);
+        }
+        
     }
 
     #endregion
@@ -217,9 +225,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void WallSlide()
     {
-        if (onWall && IsMoving && player.velocity.y < 0)
+        if (onWall && player.velocity.y < 0)
         {
-            player.velocity *= 0.5f;
+            player.velocity *= 0.9f;
             player.velocity = new Vector2(player.velocity.x * 0.2f, player.velocity.y * 0.5f);
         }
     }
@@ -230,10 +238,14 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void WallJump()
     {
-        if (onWall && !IsGrounded)
+        if ((onWall || OnLedge) && !IsGrounded)
         {
+            preWallJumpTime = Time.time;
             Debug.Log("Jump" + player.velocity);
-            player.AddForce(new Vector2(-MoveDirection * 500, 700));
+            float horizDir = (wallDirection != MoveDirection ? 1 : 0);
+            float vertDir = ((wallDirection == MoveDirection && OnLedge) || wallDirection != MoveDirection ? 1 : 0);
+
+            player.AddForce(new Vector2(horizDir * MoveDirection * 500, vertDir * 700));
             onWall = false;
         }
     }
