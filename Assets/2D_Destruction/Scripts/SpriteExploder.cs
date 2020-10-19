@@ -287,11 +287,13 @@ public static class SpriteExploder {
 
         //Create and Add Polygon Collider
         PolygonCollider2D collider = piece.AddComponent<PolygonCollider2D>();
+        
         collider.SetPath(0, calcPolyColliderPoints(region,diff));
 
         //Create and Add Rigidbody
         Rigidbody2D rigidbody = piece.AddComponent<Rigidbody2D>();
-        rigidbody.mass = 10;
+        rigidbody.useAutoMass = true;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
         rigidbody.velocity = origVelocity; //   /2 ?
 
