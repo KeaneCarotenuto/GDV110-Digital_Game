@@ -17,9 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Exponential Force Applied while holding jump")] [Range(0.0f, 5.0f)] public float exp;
     [Tooltip("Pressing space __ seconds before hitting the still lets you jump")] [Range(0.0f, 1.0f)] public float preGroundTime;
 
-    [HideInInspector] public bool IsGrounded;
+public bool IsGrounded;
     [HideInInspector] public float leavesGroundTime;
-    [HideInInspector] public bool IsJumping;
+public bool IsJumping;
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
     [HideInInspector] public bool timeReversed;
@@ -30,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float preWallJumpTime;
     [Range(0.0f, 1.0f)] public float postWallJumpTime;
     [HideInInspector] public float wallDirection;
-    [HideInInspector] public bool OnLedge;
-    [HideInInspector] public bool onWall;
+ public bool OnLedge;
+ public bool onWall;
 
     [HideInInspector] public bool isDropping;
 
@@ -166,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Manages how fast the player can move, and hwo fast they get to that speed.
         player.AddForce(Vector2.right * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
+        Debug.Log("Right Force");
     }
 
 
@@ -178,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Manages how fast the player can move, and hwo fast they get to that speed.
         player.AddForce(Vector2.left * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
+        Debug.Log("Left Force");
     }
     
 
@@ -248,10 +250,11 @@ public class PlayerMovement : MonoBehaviour
         {
             preWallJumpTime = Time.time;
             Debug.Log("Jump" + player.velocity);
-            float horizDir = (wallDirection != MoveDirection ? 1 : 0);
-            float vertDir = ((wallDirection == MoveDirection && OnLedge) || wallDirection != MoveDirection ? 1 : 0);
+            float horizDir = (!IsMoving || MoveDirection != wallDirection ? 1 : 0);
+            float vertDir = ((wallDirection == MoveDirection && OnLedge) || wallDirection != MoveDirection || !IsMoving ? 1 : 0);
 
-            player.AddForce(new Vector2(horizDir * MoveDirection * 500, vertDir * 700));
+            player.AddForce(new Vector2(horizDir * -wallDirection * 500, vertDir * 700));
+            Debug.Log("Wall Jump Force");
             onWall = false;
         }
     }
@@ -274,6 +277,7 @@ public class PlayerMovement : MonoBehaviour
             IsGrounded = false;
             IsJumping = true;
             player.AddForce(Vector2.up * 700);
+            Debug.Log("Jump Force");
         }
     }
 
@@ -286,6 +290,7 @@ public class PlayerMovement : MonoBehaviour
         if (JumpTime > 0 && !IsGrounded)
         {
             player.AddForce(Vector2.up * 5);
+            Debug.Log("Up Force");
             JumpTime -= Time.deltaTime;
         }
     }
@@ -382,8 +387,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMovePerformed(InputAction.CallbackContext ctx)
     {
-        
     }
+
     public void OnMoveCancelled(InputAction.CallbackContext ctx)
     {
         IsMoving = false;

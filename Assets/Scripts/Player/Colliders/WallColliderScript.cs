@@ -17,6 +17,7 @@ public class WallColliderScript : MonoBehaviour
         {
             pmScript.onWall = true;
             pmScript.wallDirection = pmScript.MoveDirection;
+            
         }
     }
 
