@@ -17,21 +17,23 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Exponential Force Applied while holding jump")] [Range(0.0f, 5.0f)] public float exp;
     [Tooltip("Pressing space __ seconds before hitting the still lets you jump")] [Range(0.0f, 1.0f)] public float preGroundTime;
 
-    public bool IsGrounded;
+    [HideInInspector] public bool IsGrounded;
     [HideInInspector] public float leavesGroundTime;
-    public bool IsJumping;
+    [HideInInspector] public bool IsJumping;
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
     [HideInInspector] public bool timeReversed;
     [HideInInspector] public float currentTimeScale;
 
-    public bool handOnWall;
-    public bool GapOverWall;
-    public float preWallJumpTime;
-    public float postWallJumpTime;
-    public float wallDirection;
-    public bool OnLedge;
-    public bool onWall;
+    [HideInInspector] public bool handOnWall;
+    [HideInInspector] public bool GapOverWall;
+    [HideInInspector] public float preWallJumpTime;
+    [Range(0.0f, 1.0f)] public float postWallJumpTime;
+    [HideInInspector] public float wallDirection;
+    [HideInInspector] public bool OnLedge;
+    [HideInInspector] public bool onWall;
+
+    [HideInInspector] public bool isDropping;
 
 
 
@@ -118,6 +120,10 @@ public class PlayerMovement : MonoBehaviour
         ctrl.Player.Jump.started += ctx => OnJumpStart(ctx);
         ctrl.Player.Jump.performed += ctx => OnJumpPerformed(ctx);
         ctrl.Player.Jump.canceled += ctx => OnJumpCancelled(ctx);
+
+        ctrl.Player.Drop.started += ctx => OnDropStart(ctx);
+        ctrl.Player.Drop.performed += ctx => OnDropPerformed(ctx);
+        ctrl.Player.Drop.canceled += ctx => OnDropCancelled(ctx);
 
         ctrl.Player.ReverseTime.started += ctx => OnReverseTimeStart(ctx);
         ctrl.Player.ReverseTime.performed += ctx => OnReverseTimePerformed(ctx);
@@ -207,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
             OnLedge = false;
         }
 
-        if (OnLedge == true)
+        if (OnLedge == true && !isDropping)
         {
             IsJumping = false;
 
@@ -225,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void WallSlide()
     {
-        if (onWall && player.velocity.y < 0)
+        if (onWall && player.velocity.y < 0 && !isDropping)
         {
             player.velocity *= 0.9f;
             player.velocity = new Vector2(player.velocity.x * 0.2f, player.velocity.y * 0.5f);
@@ -329,14 +335,26 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// When user is no longer pressing jump Key
-    /// </summary>
     public void OnJumpCancelled(InputAction.CallbackContext ctx)
     {
         IsJumping = false;
     }
-    
+
+    public void OnDropStart(InputAction.CallbackContext ctx)
+    {
+        isDropping = true;
+    }
+
+    public void OnDropPerformed(InputAction.CallbackContext ctx)
+    {
+        
+    }
+
+    public void OnDropCancelled(InputAction.CallbackContext ctx)
+    {
+        isDropping = false;
+    }
+
 
     //REVERSING TIME
     public void OnReverseTimeStart(InputAction.CallbackContext ctx)
