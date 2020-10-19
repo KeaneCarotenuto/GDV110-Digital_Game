@@ -5,7 +5,10 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     public GameObject input;
-    public bool open;
+    public bool staysOpen;
+
+
+    [HideInInspector] public bool open;
 
     private bool overlapping;
 
@@ -18,7 +21,11 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        open = input.GetComponent<ButtonScript>().output;
+        if (!open)
+        {
+            open = input.GetComponent<ButtonScript>().output;
+        }
+        
 
         if (open || overlapping)
         {
