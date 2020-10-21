@@ -314,6 +314,7 @@ MonoBehaviour:
   audio: {fileID: -6604816983869316075}
   HazardTags:
   - Hazard
+  - Water
 --- !u!82 &-6604816983869316075
 AudioSource:
   m_ObjectHideFlags: 0
