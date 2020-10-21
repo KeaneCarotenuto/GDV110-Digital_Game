@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4842002068371981530}
   - component: {fileID: -3421323296120787935}
   - component: {fileID: 5267641123623527539}
-  - component: {fileID: 1795802294264454153}
   m_Layer: 0
   m_Name: FallingPot
   m_TagString: PhysicsObject
