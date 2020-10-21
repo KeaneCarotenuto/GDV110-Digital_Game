@@ -206,7 +206,7 @@ public bool IsJumping;
     /// </summary>
     private void OnLedgeCheck()
     {
-        if (handOnWall && GapOverWall && player.velocity.y <= 0)
+        if (!IsGrounded && handOnWall && GapOverWall && player.velocity.y <= 0)
         {
             OnLedge = true;
         }
