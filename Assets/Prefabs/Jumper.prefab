@@ -5400,6 +5400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pmScript: {fileID: 318217469172552257}
+  isNOTActivated: 0
 --- !u!1 &318217470137174641
 GameObject:
   m_ObjectHideFlags: 0
