@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TimeManager
+  - Hazard
+  - PhysicsObject
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -39,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1434763441
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2074706995
     locked: 0

@@ -9,6 +9,7 @@ public class TimeManager : MonoBehaviour
     public PlayerControls ctrl;
     [Header("References")]
     public AudioSource music;
+    public AudioSource ambience;
     [Header("Events")]
     public UnityEvent OnTimeReverse;
     public UnityEvent OnTimeNormalise;
@@ -59,6 +60,7 @@ public class TimeManager : MonoBehaviour
             OnTimeNormalise.Invoke();
         }
         music.pitch = timeScale;
+        ambience.pitch = timeScale;
         Time.timeScale = System.Math.Abs(timeScale);
     }
 
