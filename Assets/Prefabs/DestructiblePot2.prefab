@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 7382147147744648850}
   - component: {fileID: 7382147147744648862}
   - component: {fileID: 7382147147744648857}
-  - component: {fileID: -3588359735667222477}
   m_Layer: 0
   m_Name: DestructiblePot2
   m_TagString: Untagged
@@ -282,35 +281,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-3588359735667222477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7382147147744648849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: b1c0845500000000
-  m_ShapePath:
-  - {x: -0.42441177, y: -0.98584604, z: 0}
-  - {x: 0.4385643, y: -0.9811282, z: 0}
-  - {x: 0.82328796, y: -0.6298466, z: 0}
-  - {x: 0.8112831, y: -0.19835985, z: 0}
-  - {x: 0.34677505, y: 0.27600026, z: 0}
-  - {x: 0.36092758, y: 0.53076965, z: 0}
-  - {x: -0.32533264, y: 0.51405084, z: 0}
-  - {x: -0.3278923, y: 0.2712822, z: 0}
-  - {x: -0.8279953, y: -0.18635917, z: 0}
-  - {x: -0.8138428, y: -0.61569273, z: 0}
-  m_ShapePathHash: -932146279
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 46334
