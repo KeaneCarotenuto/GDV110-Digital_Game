@@ -25,8 +25,8 @@ public bool IsJumping;
     [HideInInspector] public bool timeReversed;
     [HideInInspector] public float currentTimeScale;
 
-    [HideInInspector] public bool handOnWall;
-    [HideInInspector] public bool GapOverWall;
+ public bool handOnWall;
+ public bool GapOverWall;
     [HideInInspector] public float preWallJumpTime;
     [Range(0.0f, 1.0f)] public float postWallJumpTime;
     [HideInInspector] public float wallDirection;
@@ -68,7 +68,7 @@ public bool IsJumping;
 
         IsGrounded = false;
         IsJumping = false;
-        GapOverWall = true;
+        GapOverWall = false;
         leavesGroundTime = -100;
         preJumpTime = -100;
 
@@ -206,9 +206,10 @@ public bool IsJumping;
     /// </summary>
     private void OnLedgeCheck()
     {
-        if (!IsGrounded && handOnWall && GapOverWall && player.velocity.y <= 0)
+        if (!IsGrounded && handOnWall && GapOverWall  && player.velocity.y <= 0.1f)
         {
             OnLedge = true;
+
         }
         else
         {
@@ -400,7 +401,7 @@ public bool IsJumping;
     //ANIMATIONS
     public void UpdateAnimations()
     {
-        anim.SetBool("isMoving", IsMoving);
+        anim.SetBool("isMoving", (OnLedge || onWall ? false : IsMoving));
         anim.SetBool("isGrounded", IsGrounded);
         anim.SetFloat("yVelocity", player.velocity.y);
         anim.SetBool("onWall", (OnLedge ? false : onWall));

@@ -5,6 +5,12 @@ using UnityEngine;
 public class LedgeTopScript : MonoBehaviour
 {
     public PlayerMovement pmScript;
+    public bool isNOTActivated;
+
+    private void FixedUpdate()
+    {
+        isNOTActivated = pmScript.GapOverWall;
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
