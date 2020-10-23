@@ -299,6 +299,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: onLedge
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: onWall
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8683226872983284981}
   m_Solo: 0
