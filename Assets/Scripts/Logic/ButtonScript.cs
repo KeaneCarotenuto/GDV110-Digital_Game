@@ -8,7 +8,7 @@ public class ButtonScript : MonoBehaviour
     private GameObject b_press;
     private GameObject b_base;
 
-    public bool output;
+    [HideInInspector] public bool output;
 
 
     // Start is called before the first frame update

@@ -17,18 +17,23 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Exponential Force Applied while holding jump")] [Range(0.0f, 5.0f)] public float exp;
     [Tooltip("Pressing space __ seconds before hitting the still lets you jump")] [Range(0.0f, 1.0f)] public float preGroundTime;
 
-    [HideInInspector] public bool IsGrounded;
+public bool IsGrounded;
     [HideInInspector] public float leavesGroundTime;
-    [HideInInspector] public bool IsJumping;
+public bool IsJumping;
     [HideInInspector] public float defaultJumpTime;
     [HideInInspector] public float preJumpTime;
-    [HideInInspector] public bool onWall;
     [HideInInspector] public bool timeReversed;
     [HideInInspector] public float currentTimeScale;
 
-    [HideInInspector] public bool handOnWall;
-    [HideInInspector] public bool GapOverWall;
-    [HideInInspector] public bool OnLedge;
+ public bool handOnWall;
+ public bool GapOverWall;
+    [HideInInspector] public float preWallJumpTime;
+    [Range(0.0f, 1.0f)] public float postWallJumpTime;
+    [HideInInspector] public float wallDirection;
+ public bool OnLedge;
+ public bool onWall;
+
+    [HideInInspector] public bool isDropping;
 
 
 
@@ -37,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Horiz Acceleration force")] [Range(0.0f, 100.0f)] public float Acceleration;
     [Tooltip("Horiz Drag force")] [Range(0.0f, 100.0f)] public float Drag;
 
-    [HideInInspector] private float MoveDirection;
+    [HideInInspector] public float MoveDirection;
     [HideInInspector] public bool IsMoving;
 
 
@@ -63,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
         IsGrounded = false;
         IsJumping = false;
+        GapOverWall = false;
         leavesGroundTime = -100;
         preJumpTime = -100;
 
@@ -86,13 +92,11 @@ public class PlayerMovement : MonoBehaviour
         OnLedgeCheck();
         WallSlide();
 
-
         //Jumping
         InitialJump();
         UpwardsForce();
         DownwardsForce();
         HoldingJump();
-        onWall = false;
 
         //Animation and Effects
         UpdateAnimations();
@@ -117,6 +121,10 @@ public class PlayerMovement : MonoBehaviour
         ctrl.Player.Jump.performed += ctx => OnJumpPerformed(ctx);
         ctrl.Player.Jump.canceled += ctx => OnJumpCancelled(ctx);
 
+        ctrl.Player.Drop.started += ctx => OnDropStart(ctx);
+        ctrl.Player.Drop.performed += ctx => OnDropPerformed(ctx);
+        ctrl.Player.Drop.canceled += ctx => OnDropCancelled(ctx);
+
         ctrl.Player.ReverseTime.started += ctx => OnReverseTimeStart(ctx);
         ctrl.Player.ReverseTime.performed += ctx => OnReverseTimePerformed(ctx);
         ctrl.Player.ReverseTime.canceled += ctx => OnReverseTimeCancelled(ctx);
@@ -134,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void LeftRightMovement()
     {
-        if (IsMoving /*&& IsGrounded*/)
+        if (IsMoving && Time.time > preWallJumpTime + postWallJumpTime && !onWall && !OnLedge)
         {
             if (MoveDirection == 1)
             {
@@ -158,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Manages how fast the player can move, and hwo fast they get to that speed.
         player.AddForce(Vector2.right * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
+        Debug.Log("Right Force");
     }
 
 
@@ -170,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Manages how fast the player can move, and hwo fast they get to that speed.
         player.AddForce(Vector2.left * Acceleration * (1 - (Mathf.Abs(player.velocity.x) / MaxSpeed)));
+        Debug.Log("Left Force");
     }
     
 
@@ -178,7 +188,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ApplyDrag()
     {
-        player.AddForce(Vector2.right * -player.velocity.x * Drag);
+        if (Time.time > preWallJumpTime + postWallJumpTime)
+        {
+            player.AddForce(Vector2.right * -player.velocity.x * Drag);
+        }
+        
     }
 
     #endregion
@@ -192,16 +206,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void OnLedgeCheck()
     {
-        if (handOnWall && GapOverWall && player.velocity.y <= 0)
+        if (!IsGrounded && handOnWall && GapOverWall  && player.velocity.y <= 0.1f)
         {
             OnLedge = true;
+
         }
         else
         {
             OnLedge = false;
         }
 
-        if (OnLedge == true)
+        if (OnLedge == true && !isDropping)
         {
             IsJumping = false;
 
@@ -219,9 +234,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void WallSlide()
     {
-        if (onWall && IsMoving && player.velocity.y < 0)
+        if (onWall && player.velocity.y < 0 && !isDropping)
         {
-            player.velocity *= 0.5f;
+            player.velocity *= 0.9f;
             player.velocity = new Vector2(player.velocity.x * 0.2f, player.velocity.y * 0.5f);
         }
     }
@@ -232,10 +247,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void WallJump()
     {
-        if (onWall)
+        if ((onWall || OnLedge) && !IsGrounded)
         {
+            preWallJumpTime = Time.time;
             Debug.Log("Jump" + player.velocity);
-            player.AddForce(new Vector2(-MoveDirection * 500, 700));
+            float horizDir = (!IsMoving || MoveDirection != wallDirection ? 1 : 0);
+            float vertDir = ((wallDirection == MoveDirection && (OnLedge || GapOverWall) ) || wallDirection != MoveDirection || !IsMoving ? 1 : 0);
+
+            player.AddForce(new Vector2(horizDir * -wallDirection * 500, vertDir * 700));
+            Debug.Log("Wall Jump Force");
             onWall = false;
         }
     }
@@ -252,12 +272,13 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void InitialJump()
     {
-        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < preGroundTime)
+        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < preGroundTime &&  !onWall)
         {
             leavesGroundTime = 0;
             IsGrounded = false;
             IsJumping = true;
             player.AddForce(Vector2.up * 700);
+            Debug.Log("Jump Force");
         }
     }
 
@@ -270,6 +291,7 @@ public class PlayerMovement : MonoBehaviour
         if (JumpTime > 0 && !IsGrounded)
         {
             player.AddForce(Vector2.up * 5);
+            Debug.Log("Up Force");
             JumpTime -= Time.deltaTime;
         }
     }
@@ -319,14 +341,26 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// When user is no longer pressing jump Key
-    /// </summary>
     public void OnJumpCancelled(InputAction.CallbackContext ctx)
     {
         IsJumping = false;
     }
-    
+
+    public void OnDropStart(InputAction.CallbackContext ctx)
+    {
+        isDropping = true;
+    }
+
+    public void OnDropPerformed(InputAction.CallbackContext ctx)
+    {
+        
+    }
+
+    public void OnDropCancelled(InputAction.CallbackContext ctx)
+    {
+        isDropping = false;
+    }
+
 
     //REVERSING TIME
     public void OnReverseTimeStart(InputAction.CallbackContext ctx)
@@ -354,8 +388,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMovePerformed(InputAction.CallbackContext ctx)
     {
-        
     }
+
     public void OnMoveCancelled(InputAction.CallbackContext ctx)
     {
         IsMoving = false;
@@ -367,16 +401,16 @@ public class PlayerMovement : MonoBehaviour
     //ANIMATIONS
     public void UpdateAnimations()
     {
-        anim.SetBool("isMoving", IsMoving);
+        anim.SetBool("isMoving", (OnLedge || onWall ? false : IsMoving));
         anim.SetBool("isGrounded", IsGrounded);
         anim.SetFloat("yVelocity", player.velocity.y);
-        anim.SetBool("onWall", onWall);
+        anim.SetBool("onWall", (OnLedge ? false : onWall));
         anim.SetBool("onLedge", OnLedge);
     }
 
     public void PowerEffects()
     {
-        timeReversed = timeManager.timeIsReversed;
+        timeReversed = timeManager.timeReversed;
         currentTimeScale = timeManager.timeScale;
 
         if (currentTimeScale < 0.99 || timeReversed)

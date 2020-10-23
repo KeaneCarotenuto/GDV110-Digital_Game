@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "MultiTap(tapTime=0.8)"
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "e5791cb7-a01c-4f07-b6c9-7ee112925068",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -124,6 +132,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "DestructiveJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd4f5b23-3f14-4a25-936b-ec740bc97f8c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

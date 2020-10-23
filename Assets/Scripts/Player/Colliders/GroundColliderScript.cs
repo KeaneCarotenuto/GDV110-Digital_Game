@@ -13,9 +13,15 @@ public class GroundColliderScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        pmScript.IsGrounded = true;
-        pmScript.IsJumping = false;
-        pmScript.JumpTime = pmScript.defaultJumpTime;
-        pmScript.leavesGroundTime = Time.time;
+        if (Time.time - pmScript.preJumpTime > pmScript.preGroundTime && !collision.isTrigger)
+        {
+            pmScript.IsGrounded = true;
+            pmScript.IsJumping = false;
+            pmScript.JumpTime = pmScript.defaultJumpTime;
+            pmScript.leavesGroundTime = Time.time;
+
+            pmScript.onWall = false;
+        }
+        
     }
 }
