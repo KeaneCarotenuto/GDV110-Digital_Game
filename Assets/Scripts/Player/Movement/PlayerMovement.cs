@@ -42,7 +42,7 @@ public bool IsJumping;
     [Tooltip("Horiz Acceleration force")] [Range(0.0f, 100.0f)] public float Acceleration; 
     [Tooltip("Horiz Drag force")] [Range(0.0f, 100.0f)] public float Drag; 
  
-    [HideInInspector] public float MoveDirection; 
+ public float MoveDirection; 
     [HideInInspector] public bool IsMoving; 
  
  
@@ -52,7 +52,9 @@ public bool IsJumping;
     public CapsuleCollider2D hitBox; 
     public CircleCollider2D groundBox; 
     public BoxCollider2D wallBox; 
-    public SpriteRenderer sRend; 
+    public SpriteRenderer sRend;
+    public AudioSource audioS;
+    public AudioClip jumpSound;
     public TimeManager timeManager; 
     public ParticleSystem rewindParticles; 
     public GameObject effects; 
@@ -68,7 +70,7 @@ public bool IsJumping;
  
         IsGrounded = false; 
         IsJumping = false; 
-        GapOverWall = false; 
+        GapOverWall = true; 
         leavesGroundTime = -100; 
         preJumpTime = -100; 
  
@@ -246,17 +248,29 @@ public bool IsJumping;
     /// If the player is on the wall and they jump, they are pushed away and upwards 
     /// </summary> 
     private void WallJump() 
-    { 
-        if ((onWall || OnLedge) && !IsGrounded) 
-        { 
-            preWallJumpTime = Time.time; 
-            Debug.Log("Jump" + player.velocity); 
-            float horizDir = (!IsMoving || MoveDirection != wallDirection ? 1 : 0); 
-            float vertDir = ((wallDirection == MoveDirection && (OnLedge || GapOverWall) ) || wallDirection != MoveDirection || !IsMoving ? 1 : 0); 
- 
-            player.AddForce(new Vector2(horizDir * -wallDirection * 500, vertDir * 700)); 
-            Debug.Log("Wall Jump Force"); 
-            onWall = false; 
+    {
+        if ((onWall || OnLedge) && !IsGrounded)
+        {
+            if (MoveDirection > 0)
+            {
+                MoveRight();
+            }
+            else if (MoveDirection < 0)
+            {
+                MoveLeft();
+            }
+
+            preWallJumpTime = Time.time;
+            Debug.Log("Jump" + player.velocity);
+            float horizDir = (!IsMoving || MoveDirection != wallDirection ? 1 : 0);
+            float vertDir = ((wallDirection == MoveDirection && (OnLedge || GapOverWall)) || wallDirection != MoveDirection || !IsMoving ? 1 : 0);
+
+            player.AddForce(new Vector2(horizDir * -wallDirection * 500, vertDir * 700));
+            Debug.Log("Wall Jump Force");
+
+            if (vertDir != 0) JumpSound();
+
+
         } 
     } 
  
@@ -272,17 +286,26 @@ public bool IsJumping;
     /// </summary> 
     private void InitialJump() 
     { 
-        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < preGroundTime &&  !onWall) 
-        { 
-            leavesGroundTime = 0; 
-            IsGrounded = false; 
-            IsJumping = true; 
-            player.AddForce(Vector2.up * 700); 
-            Debug.Log("Jump Force"); 
-        } 
-    } 
- 
- 
+        if (Time.time - leavesGroundTime < 0.2f && Time.time - preJumpTime < preGroundTime &&  !onWall && IsGrounded)
+        {
+            JumpSound();
+
+            leavesGroundTime = 0;
+            IsGrounded = false;
+            IsJumping = true;
+            player.AddForce(Vector2.up * 700);
+            Debug.Log("Jump Force");
+        }
+    }
+
+    private void JumpSound()
+    {
+        audioS.pitch = 1;
+        audioS.pitch *= UnityEngine.Random.Range(0.7f, 1.5f);
+        audioS.PlayOneShot(jumpSound, 0.8f);
+    }
+
+
     /// <summary> 
     /// This force is applied for the duration of the jump to give more upwards force in general 
     /// </summary> 
@@ -401,6 +424,7 @@ public bool IsJumping;
     //ANIMATIONS 
     public void UpdateAnimations() 
     { 
+
         anim.SetBool("isMoving", (OnLedge || onWall ? false : IsMoving)); 
         anim.SetBool("isGrounded", IsGrounded); 
         anim.SetFloat("yVelocity", player.velocity.y); 
