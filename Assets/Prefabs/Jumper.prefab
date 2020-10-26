@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.225, y: 0.25}
+  m_Offset: {x: 0.15, y: 0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: -6604816983869316075}
   m_Layer: 0
   m_Name: Jumper
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -4062394274017861096, guid: 5be69b276324a8242b9da82aed55f1ec,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -207,6 +207,8 @@ MonoBehaviour:
   groundBox: {fileID: 318217470186127007}
   wallBox: {fileID: 318217468644967280}
   sRend: {fileID: 318217469172552258}
+  audioS: {fileID: -6604816983869316075}
+  jumpSound: {fileID: 8300000, guid: 0bca3c58b4d04244994c6572ec37b8fe, type: 3}
   timeManager: {fileID: 0}
   rewindParticles: {fileID: 318217469330010414}
   effects: {fileID: 318217469485146508}
@@ -5258,7 +5260,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 1.3}
+  m_Offset: {x: 0.45, y: 1.675}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5284,6 +5286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pmScript: {fileID: 318217469172552257}
+  isNOTActivated: 0
 --- !u!1 &318217470137174641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,7 +5465,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 1}
+  m_Offset: {x: 0.45, y: 1.375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
