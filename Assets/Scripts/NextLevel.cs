@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class NextLevel : MonoBehaviour
 {
+
+    public float resettime = 1;
+    public float delay = 0;
+    public AudioSource sound = null;
+    public Animator anim;
     enum Scenes
     {
         Level1,
@@ -18,22 +22,19 @@ public class NextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GotoNextLevel();
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex+1));
     }
 
-    private void Update()
+    
+    IEnumerator LoadLevel(int levelIndex)
     {
-        if (Keyboard.current.leftCtrlKey.isPressed && Keyboard.current.leftShiftKey.isPressed && Keyboard.current.nKey.wasPressedThisFrame)
+        yield return new WaitForSeconds(delay);
+        anim.SetTrigger("Start");
+        if(sound != null)
         {
-            GotoNextLevel();
+            sound.Play();
         }
-    }
-
-    public void GotoNextLevel()
-    {
-        string levelName = SceneManager.GetActiveScene().name.Substring(0, 5) + (int.Parse(SceneManager.GetActiveScene().name.Substring(5, 1)) + 1).ToString();
-        if (levelName == "Level8") levelName = "Title Screen";
-
-        SceneManager.LoadScene(levelName);
+        yield return new WaitForSeconds(resettime);
+        SceneManager.LoadScene(levelIndex);
     }
 }
