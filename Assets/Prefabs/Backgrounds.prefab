@@ -1153,6 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3969721259427099291}
+  - component: {fileID: 3936998705763911971}
   - component: {fileID: 3969721259427099290}
   m_Layer: 0
   m_Name: caverockbg
@@ -1175,6 +1176,20 @@ Transform:
   m_Father: {fileID: 3969721259186819815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3936998705763911971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969721259427099288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c25fbe10aa49a40b20eedb07e53de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  parallaxEffect: 0
 --- !u!212 &3969721259427099290
 SpriteRenderer:
   m_ObjectHideFlags: 0

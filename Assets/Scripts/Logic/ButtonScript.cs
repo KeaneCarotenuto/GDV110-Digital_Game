@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class ButtonScript : MonoBehaviour
 {
+    public Animator animator;
     private GameObject b_press;
     private GameObject b_base;
+    public bool isRuinsVar;
 
     [HideInInspector] public bool output;
 
@@ -21,15 +23,19 @@ public class ButtonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(b_press.transform.position, b_base.transform.position) <= 0.1f)
+        if (Vector2.Distance(b_press.transform.position, b_base.transform.position) <= 0.1f) //Change to Trigger/Collision
         {
             output = true;
             b_base.GetComponent<SpriteRenderer>().color = Color.green;
+            animator.SetBool("On", !output); 
+            animator.SetBool("RuinVar", isRuinsVar);
         }
         else
         {
             output = false;
             b_base.GetComponent<SpriteRenderer>().color = Color.white;
+            animator.SetBool("On", !output); 
+            animator.SetBool("RuinVar", isRuinsVar);
         }
 
         

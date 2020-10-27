@@ -57,6 +57,7 @@ public bool IsJumping;
     public AudioClip jumpSound;
     public TimeManager timeManager; 
     public ParticleSystem rewindParticles; 
+    public ParticleSystem dust;
     public GameObject effects; 
     private Animator anim; 
      
@@ -303,6 +304,7 @@ public bool IsJumping;
         audioS.pitch = 1;
         audioS.pitch *= UnityEngine.Random.Range(0.7f, 1.5f);
         audioS.PlayOneShot(jumpSound, 0.8f);
+        dust.Play(); //particle effect for jumps!
     }
 
 
