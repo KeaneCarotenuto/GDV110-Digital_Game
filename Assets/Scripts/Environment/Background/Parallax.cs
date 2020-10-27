@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    //script from:  https://www.youtube.com/watch?v=zit45k6CUMk
+    //script adapted from:  https://www.youtube.com/watch?v=zit45k6CUMk
     private float length;
     private float startpos;
     public GameObject cam;
@@ -17,7 +17,7 @@ public class Parallax : MonoBehaviour
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         float distance = (cam.transform.position.x * parallaxEffect);

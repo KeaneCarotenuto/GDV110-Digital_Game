@@ -9,11 +9,17 @@ public class ButtonScript : MonoBehaviour
     private GameObject b_press;
     private GameObject b_base;
     public bool isRuinsVar;
+    public AudioSource audioSauce;
+    public AudioClip activateSound;
 
     [HideInInspector] public bool output;
     public bool doesToggle;
 
 
+    void Start()
+    {
+        audioSauce = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +38,10 @@ public class ButtonScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(output != true)
+        {
+        audioSauce.PlayOneShot(activateSound);
+        }
         output = true;
     }
 
