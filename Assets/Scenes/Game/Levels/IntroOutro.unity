@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f9809c997d068479a60e0c5a3eccaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Level1
+  SceneName: Intro2
 --- !u!1 &1746125291
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +659,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d45948ca26eb99246a3cf6c89acd8d1d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.401
   m_Pitch: 1.86
   Loop: 0
   Mute: 0
