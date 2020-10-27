@@ -10,7 +10,7 @@ public class LoadMainMenu : MonoBehaviour
     
     void Awake()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Title Screen");
     }
 
     

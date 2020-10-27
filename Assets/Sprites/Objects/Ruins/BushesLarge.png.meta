@@ -1,0 +1,476 @@
+fileFormatVersion: 2
+guid: b5649cdc3fd52ac49aa3ed5305cee60b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3255037493647144620
+    second: BushesLarge_0
+  - first:
+      213: -388454839041613038
+    second: BushesLarge_1
+  - first:
+      213: -4884348871525045541
+    second: BushesLarge_2
+  - first:
+      213: -2592911148381170014
+    second: BushesLarge_3
+  - first:
+      213: -6154661004270836628
+    second: BushesLarge_4
+  - first:
+      213: -9206515695189439928
+    second: BushesLarge_5
+  - first:
+      213: -3383655806600043857
+    second: BushesLarge_6
+  - first:
+      213: -4924602302791703131
+    second: BushesLarge_7
+  - first:
+      213: 2746444279098523594
+    second: BushesLarge_8
+  - first:
+      213: -2696976849058551371
+    second: BushesLarge_9
+  - first:
+      213: 6280466172300548038
+    second: BushesLarge_10
+  - first:
+      213: -6280019452105739787
+    second: BushesLarge_11
+  - first:
+      213: -5431312400716890473
+    second: BushesLarge_12
+  - first:
+      213: -3817867570972383606
+    second: BushesLarge_13
+  - first:
+      213: 8922720399245852840
+    second: BushesLarge_14
+  - first:
+      213: -383484857629633679
+    second: BushesLarge_15
+  - first:
+      213: -2096952811464296594
+    second: BushesLarge_16
+  - first:
+      213: -4381772349481477293
+    second: BushesLarge_17
+  - first:
+      213: -1892509594009798631
+    second: BushesLarge_18
+  - first:
+      213: 4706557593369870850
+    second: BushesLarge_19
+  - first:
+      213: -18321125405778728
+    second: BushesLarge_20
+  - first:
+      213: -2187258064565048725
+    second: BushesLarge_21
+  - first:
+      213: -3350813647874171397
+    second: BushesLarge_22
+  - first:
+      213: 2493275837087275026
+    second: BushesLarge_23
+  - first:
+      213: -3565827550228437420
+    second: BushesLarge_24
+  - first:
+      213: 3082299284042285643
+    second: BushesLarge_25
+  - first:
+      213: -9029398127336759191
+    second: BushesLarge_26
+  - first:
+      213: -979582153860752408
+    second: BushesLarge_27
+  - first:
+      213: -5510858215905179621
+    second: BushesLarge_28
+  - first:
+      213: -7261754136878065271
+    second: BushesLarge_29
+  - first:
+      213: 5393430552283754705
+    second: BushesLarge_30
+  - first:
+      213: 3307238347375724544
+    second: BushesLarge_31
+  - first:
+      213: -7684836409369690062
+    second: BushesLarge_32
+  - first:
+      213: -4363774130842357416
+    second: BushesLarge_33
+  - first:
+      213: 8172149402752275220
+    second: BushesLarge_34
+  - first:
+      213: -2819536481588820034
+    second: BushesLarge_35
+  - first:
+      213: 659431921678705592
+    second: BushesLarge_36
+  - first:
+      213: -4921496182204672463
+    second: BushesLarge_37
+  - first:
+      213: -4313841428987835386
+    second: BushesLarge_38
+  - first:
+      213: -8415897063908811479
+    second: BushesLarge_39
+  - first:
+      213: -4949805874082819357
+    second: BushesLarge_40
+  - first:
+      213: -8968752418800841307
+    second: BushesLarge_41
+  - first:
+      213: 400757239022443117
+    second: BushesLarge_42
+  - first:
+      213: 5481209287215721115
+    second: BushesLarge_43
+  - first:
+      213: -5776241714654089686
+    second: BushesLarge_44
+  - first:
+      213: 8476902929340106165
+    second: BushesLarge_45
+  - first:
+      213: -4356919670525014289
+    second: BushesLarge_46
+  - first:
+      213: 974678236992707995
+    second: BushesLarge_47
+  - first:
+      213: 2462246195989486232
+    second: BushesLarge_48
+  - first:
+      213: 7411103688481360000
+    second: BushesLarge_49
+  - first:
+      213: 8529136588304996522
+    second: BushesLarge_50
+  - first:
+      213: 8568175329911134035
+    second: BushesLarge_51
+  - first:
+      213: -1865819512020841448
+    second: BushesLarge_52
+  - first:
+      213: 4072685315852665957
+    second: BushesLarge_53
+  - first:
+      213: 6286642689887179135
+    second: BushesLarge_54
+  - first:
+      213: 2488054561921487823
+    second: BushesLarge_55
+  - first:
+      213: -565145276579131309
+    second: BushesLarge_56
+  - first:
+      213: 2112105764250263557
+    second: BushesLarge_57
+  - first:
+      213: -325573910315038698
+    second: BushesLarge_58
+  - first:
+      213: -6903853499902117074
+    second: BushesLarge_59
+  - first:
+      213: -3095060241685625125
+    second: BushesLarge_60
+  - first:
+      213: 2749304800530407484
+    second: BushesLarge_61
+  - first:
+      213: 3942106021122152055
+    second: BushesLarge_62
+  - first:
+      213: -242504288823041911
+    second: BushesLarge_63
+  - first:
+      213: 3934088037339404980
+    second: BushesLarge_64
+  - first:
+      213: -2242917774946845157
+    second: BushesLarge_65
+  - first:
+      213: -7583757647910601614
+    second: BushesLarge_66
+  - first:
+      213: -7169330363277747166
+    second: BushesLarge_67
+  - first:
+      213: -188151530629356992
+    second: BushesLarge_68
+  - first:
+      213: 2853967169475013115
+    second: BushesLarge_69
+  - first:
+      213: 3403128101116082916
+    second: BushesLarge_70
+  - first:
+      213: -7874027871550453780
+    second: BushesLarge_71
+  - first:
+      213: 620270109762209891
+    second: BushesLarge_72
+  - first:
+      213: -3147146359798300631
+    second: BushesLarge_73
+  - first:
+      213: 8140625753285518014
+    second: BushesLarge_74
+  - first:
+      213: 6930743386250257244
+    second: BushesLarge_75
+  - first:
+      213: 1868631655154323150
+    second: BushesLarge_76
+  - first:
+      213: -1498689698170470655
+    second: BushesLarge_77
+  - first:
+      213: 194238489589593109
+    second: BushesLarge_78
+  - first:
+      213: 4355075151104505976
+    second: BushesLarge_79
+  - first:
+      213: -8041106535724355008
+    second: BushesLarge_80
+  - first:
+      213: 3626345572417414682
+    second: BushesLarge_81
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BushesLarge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459859c35a8c3d2d0800000000000000
+      internalID: -3255037493647144620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BushesLarge_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 213a4abc16eeb9af0800000000000000
+      internalID: -388454839041613038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BushesLarge_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda6ba9649e473cb0800000000000000
+      internalID: -4884348871525045541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BushesLarge_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a617926c01240cd0800000000000000
+      internalID: -2592911148381170014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BushesLarge_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64ec77ec60469aa0800000000000000
+      internalID: -6154661004270836628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BushesLarge_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84acc21e0c2eb3080800000000000000
+      internalID: -9206515695189439928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
