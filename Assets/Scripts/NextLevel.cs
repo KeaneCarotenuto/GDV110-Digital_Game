@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
+
+    public float resettime = 1;
+    public float delay = 0;
+    public AudioSource sound = null;
+    public Animator anim;
     enum Scenes
     {
         Level1,
@@ -17,7 +22,19 @@ public class NextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        string levelName = SceneManager.GetActiveScene().name.Substring(0, 5) + (int.Parse(SceneManager.GetActiveScene().name.Substring(5, 1)) + 1).ToString();
-        SceneManager.LoadScene(levelName, LoadSceneMode.Single);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex+1));
+    }
+
+    
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        yield return new WaitForSeconds(delay);
+        anim.SetTrigger("Start");
+        if(sound != null)
+        {
+            sound.Play();
+        }
+        yield return new WaitForSeconds(resettime);
+        SceneManager.LoadScene(levelIndex);
     }
 }
