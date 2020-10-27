@@ -8,6 +8,7 @@ TagManager:
   - Hazard
   - PhysicsObject
   - Water
+  - music
   layers:
   - Default
   - TransparentFX

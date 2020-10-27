@@ -18,6 +18,6 @@ public class NextLevel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string levelName = SceneManager.GetActiveScene().name.Substring(0, 5) + (int.Parse(SceneManager.GetActiveScene().name.Substring(5, 1)) + 1).ToString();
-        SceneManager.LoadScene(levelName, LoadSceneMode.Single);
+        SceneManager.LoadScene(levelName);
     }
 }

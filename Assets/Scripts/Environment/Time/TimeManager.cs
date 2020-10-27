@@ -44,6 +44,11 @@ public class TimeManager : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+    }
+
     // Update is called once per frame
     void Update()
     {
