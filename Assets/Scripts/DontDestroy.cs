@@ -13,7 +13,7 @@ public class DontDestroy : MonoBehaviour
 {
     public int priority;
 
-    void Awake()
+    void Start()
     {
         DontDestroyOnLoad(this.gameObject);
 
@@ -35,14 +35,16 @@ public class DontDestroy : MonoBehaviour
                 Destroy(_object);
             }
         }
+
+        if (SceneManager.GetActiveScene().name.Contains("Title"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name.Contains("Title"))
-        {
-           Destroy(this.gameObject);
-        }
+        
 
     }
 }

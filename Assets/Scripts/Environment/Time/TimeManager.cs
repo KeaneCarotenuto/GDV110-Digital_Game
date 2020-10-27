@@ -52,6 +52,12 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!music)
+        {
+            Debug.Log("Finding music");
+            music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        }
+
         if (timeScale - 0.001f*timeReverseSpeed > timeScale_MIN && powerActive) { timeScale -= 0.001f * timeReverseSpeed; }
         else if (timeScale + 0.001f * timeNormaliseSpeed < timeScale_MAX && !powerActive) { timeScale += 0.001f * timeNormaliseSpeed; }
         if (timeScale < 0 && (!timeReversed)) 
