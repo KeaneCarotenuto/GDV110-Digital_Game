@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class NextLevel : MonoBehaviour
 {
@@ -25,7 +26,15 @@ public class NextLevel : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex+1));
     }
 
-    
+    private void Update()
+    {
+        if (Keyboard.current.leftCtrlKey.isPressed && Keyboard.current.leftShiftKey.isPressed && Keyboard.current.nKey.wasPressedThisFrame)
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+    }
+
+
     IEnumerator LoadLevel(int levelIndex)
     {
         yield return new WaitForSeconds(delay);

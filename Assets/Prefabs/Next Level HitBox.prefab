@@ -70,3 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7597cbc6406284fab9f70239b87fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resettime: 1
+  delay: 0
+  sound: {fileID: 0}
+  anim: {fileID: 0}

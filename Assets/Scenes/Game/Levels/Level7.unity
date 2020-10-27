@@ -10924,6 +10924,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Next Level HitBox
       objectReference: {fileID: 0}
+    - target: {fileID: 5488428618278753373, guid: cf616cea94ac05f4b99adb11f8f158fe,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1062810700}
     - target: {fileID: 5488428618278753375, guid: cf616cea94ac05f4b99adb11f8f158fe,
         type: 3}
       propertyPath: m_LocalPosition.x
