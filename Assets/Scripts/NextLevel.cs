@@ -32,6 +32,8 @@ public class NextLevel : MonoBehaviour
     public void GotoNextLevel()
     {
         string levelName = SceneManager.GetActiveScene().name.Substring(0, 5) + (int.Parse(SceneManager.GetActiveScene().name.Substring(5, 1)) + 1).ToString();
+        if (levelName == "Level8") levelName = "Title Screen";
+
         SceneManager.LoadScene(levelName);
     }
 }

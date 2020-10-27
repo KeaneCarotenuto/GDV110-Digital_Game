@@ -36,15 +36,15 @@ public class DontDestroy : MonoBehaviour
             }
         }
 
-        if (SceneManager.GetActiveScene().name.Contains("Title"))
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
 
     void Update()
     {
-        
 
+        if (SceneManager.GetActiveScene().name.Contains("Title"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
