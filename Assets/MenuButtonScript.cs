@@ -11,4 +11,14 @@ public class MenuButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene(Level1Name, LoadSceneMode.Single);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+    }
 }
