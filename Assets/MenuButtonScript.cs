@@ -15,10 +15,5 @@ public class MenuButtonScript : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-
-        if (Application.isEditor)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
     }
 }
