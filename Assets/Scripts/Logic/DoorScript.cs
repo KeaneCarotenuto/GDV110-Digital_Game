@@ -6,7 +6,6 @@ public class DoorScript : MonoBehaviour
 {
     public Animator animator;
     public GameObject input;
-    public bool staysOpen;
     public bool isRuinsVar;
 
 
@@ -23,13 +22,10 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!open)
-        {
-            open = input.GetComponent<ButtonScript>().output;
-        }
-        
+        open = input.GetComponent<ButtonScript>().output;
 
-        if (open || overlapping)
+
+        if (open)
         {
             GetComponent<Collider2D>().isTrigger = true;
             GetComponent<SpriteRenderer>().color = Color.gray;
