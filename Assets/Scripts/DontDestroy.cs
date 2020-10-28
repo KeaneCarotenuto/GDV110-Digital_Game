@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 public class DontDestroy : MonoBehaviour
 {
     public int priority;
+    public bool dontDellOnTitle;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class DontDestroy : MonoBehaviour
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag("music");
 
-        int topPriority = 0;
+        int topPriority = -10;
         foreach (GameObject _object in objs)
         {
             if (_object.GetComponent<DontDestroy>().priority > topPriority)
@@ -28,29 +29,35 @@ public class DontDestroy : MonoBehaviour
             }
         }
 
+        int desCount = 0;
         foreach (GameObject _object in objs)
         {
             if (_object.GetComponent<DontDestroy>().priority < topPriority)
             {
+                desCount++;
                 Destroy(_object);
+                Debug.Log("Destroyed " + _object.name + ", by " + gameObject.name + " bc more important exists");
             }
         }
 
-        objs = GameObject.FindGameObjectsWithTag("music");
-
-        if (objs.Length > 1)
+        if (objs.Length - desCount > 1)
         {
             Destroy(gameObject);
+            Debug.Log("Destroyed " + gameObject.name + ", by " + gameObject.name + " bc too many");
         }
 
     }
 
     void Update()
     {
-
-        if (SceneManager.GetActiveScene().name.Contains("Title"))
+        if (!dontDellOnTitle)
         {
-            Destroy(this.gameObject);
+            if (SceneManager.GetActiveScene().name.Contains("Title"))
+            {
+                Destroy(gameObject);
+                Debug.Log("Destroyed " + gameObject.name + ", by " + gameObject.name + " bc more on title");
+            }
         }
+        
     }
 }
