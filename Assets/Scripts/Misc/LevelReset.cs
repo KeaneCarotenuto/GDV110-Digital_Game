@@ -16,7 +16,11 @@ public class LevelReset : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (anim == null)
+        {
+            anim = GameObject.Find("Fade").GetComponent<Animator>();
+        }
+
     }
 
     // Update is called once per frame
