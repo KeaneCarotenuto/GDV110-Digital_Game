@@ -86,25 +86,27 @@ public bool IsJumping;
  
  
     void FixedUpdate() 
-    { 
+    {
+        if (!GetComponent<LevelReset>().resetting)
+        {
+            //Movement 
+            ApplyDrag();
+            LeftRightMovement();
 
-        //Movement 
-        ApplyDrag(); 
-        LeftRightMovement(); 
- 
-        //Walls 
-        OnLedgeCheck(); 
-        WallSlide(); 
- 
-        //Jumping 
-        InitialJump(); 
-        UpwardsForce(); 
-        DownwardsForce(); 
-        HoldingJump(); 
- 
-        //Animation and Effects 
-        UpdateAnimations(); 
-        PowerEffects(); 
+            //Walls 
+            OnLedgeCheck();
+            WallSlide();
+
+            //Jumping 
+            InitialJump();
+            UpwardsForce();
+            DownwardsForce();
+            HoldingJump();
+
+            //Animation and Effects 
+            UpdateAnimations();
+            PowerEffects();
+        }
     } 
  
  
