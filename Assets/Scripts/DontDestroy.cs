@@ -34,9 +34,13 @@ public class DontDestroy : MonoBehaviour
         {
             if (_object.GetComponent<DontDestroy>().priority < topPriority)
             {
-                desCount++;
-                Destroy(_object);
-                Debug.Log("Destroyed " + _object.name + ", by " + gameObject.name + " bc more important exists");
+                if (!(_object.name.Contains("Title") && SceneManager.GetActiveScene().name.Contains("Title")))
+                {
+                    desCount++;
+                    Destroy(_object);
+                    Debug.Log("Destroyed " + _object.name + ", by " + gameObject.name + " bc more important exists");
+                }
+                
             }
         }
 
