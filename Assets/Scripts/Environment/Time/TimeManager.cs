@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
-    
+
     public PlayerControls ctrl;
     [Header("References")]
     public AudioSource music;
@@ -16,8 +16,8 @@ public class TimeManager : MonoBehaviour
 
     [Header("Time Configuration")]
     [Tooltip("The current speed of time between 1 (normal) and -1 (reversed)")] [Range(-1.0f, 1.0f)] public float timeScale = 1.0f;
-    [Tooltip("The speed time reverses at while ability is active")] [Range(10.0f, 10.0f)] public float timeReverseSpeed = 10;
-    [Tooltip("The speed at which time returns to normal when the ability is not active")] [Range(10.0f, 10.0f)] public float timeNormaliseSpeed = 10;
+    [HideInInspector] [Tooltip("The speed time reverses at while ability is active")] [Range(10.0f, 10.0f)] public float timeReverseSpeed = 10;
+    [HideInInspector] [Tooltip("The speed at which time returns to normal when the ability is not active")] [Range(10.0f, 10.0f)] public float timeNormaliseSpeed = 10;
     [Header("Player Ability Configuration")]
     [Range(0f, 100f)] public float abilityCost = 10;
     [Range(0f, 100f)] public float sandRegenRate = 1;
@@ -49,6 +49,9 @@ public class TimeManager : MonoBehaviour
         if (!music && GameObject.Find("MusicManager")) {
             music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         }
+
+        timeReverseSpeed = 8;
+        timeNormaliseSpeed = 10;
     }
 
     // Update is called once per frame
