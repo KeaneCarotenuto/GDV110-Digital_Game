@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
-    
+
     public PlayerControls ctrl;
     [Header("References")]
     public AudioSource music;
     public AudioSource ambience;
     [Header("Events")]
-    public UnityEvent OnTimeReverse;
-    public UnityEvent OnTimeNormalise;
+    [HideInInspector] public UnityEvent OnTimeReverse;
+    [HideInInspector] public UnityEvent OnTimeNormalise;
 
     [Header("Time Configuration")]
     [Tooltip("The current speed of time between 1 (normal) and -1 (reversed)")] [Range(-1.0f, 1.0f)] public float timeScale = 1.0f;
@@ -49,6 +49,9 @@ public class TimeManager : MonoBehaviour
         if (!music && GameObject.Find("MusicManager")) {
             music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         }
+
+        timeReverseSpeed = 8;
+        timeNormaliseSpeed = 10;
     }
 
     // Update is called once per frame
