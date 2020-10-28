@@ -87,6 +87,7 @@ public bool IsJumping;
  
     void FixedUpdate() 
     { 
+
         //Movement 
         ApplyDrag(); 
         LeftRightMovement(); 

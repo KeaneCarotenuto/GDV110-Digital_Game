@@ -46,13 +46,15 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
-        music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        if (!music && GameObject.Find("MusicManager")) {
+            music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!music)
+        if (!music && GameObject.Find("MusicManager"))
         {
             Debug.Log("Finding music");
             music = GameObject.Find("MusicManager").GetComponent<AudioSource>();
@@ -70,7 +72,7 @@ public class TimeManager : MonoBehaviour
             timeReversed = false;
             OnTimeNormalise.Invoke();
         }
-        music.pitch = timeScale;
+        if (music != null) music.pitch = timeScale;
         ambience.pitch = timeScale;
         Time.timeScale = System.Math.Abs(timeScale);
     }

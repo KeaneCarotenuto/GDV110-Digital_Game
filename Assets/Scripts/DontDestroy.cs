@@ -36,7 +36,13 @@ public class DontDestroy : MonoBehaviour
             }
         }
 
-        
+        objs = GameObject.FindGameObjectsWithTag("music");
+
+        if (objs.Length > 1)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     void Update()
