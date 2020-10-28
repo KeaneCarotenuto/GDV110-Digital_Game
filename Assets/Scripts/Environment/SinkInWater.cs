@@ -29,9 +29,10 @@ public class SinkInWater : MonoBehaviour
     IEnumerator Sink()
     {
         IsSinking = true;
+        transform.position = transform.up * -10;
         yield return new WaitForSeconds(SinkDuration);
-        spawner.Instances.Remove(this.gameObject);
-        Destroy(this.gameObject);
+        //spawner.Instances.Remove(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
     

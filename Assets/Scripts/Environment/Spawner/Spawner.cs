@@ -54,11 +54,7 @@ public class Spawner : MonoBehaviour
             GameObject NewInstance = Instantiate(PrefabToSpawn, new Vector3(this.transform.position.x + Random.Range(-1 * XJitter, XJitter), this.transform.position.y + Random.Range(-1 * YJitter, YJitter), this.transform.position.z), this.transform.rotation, Parent.transform);
             if(SinksInWater)
             {
-                SinkInWater sinkable = NewInstance.AddComponent<SinkInWater>();
-                sinkable.TimeBeforeSink = TimeBeforeSink;
-                sinkable.SinkDuration = SinkDuration;
-                sinkable.SinkForce = SinkForce;
-                sinkable.spawner = this;
+                NewInstance.layer = 10;
             }
             Instances.Add(NewInstance);
             
@@ -68,6 +64,10 @@ public class Spawner : MonoBehaviour
             GameObject.Destroy(Instances[0]);
             Instances.RemoveAt(0);
             GameObject NewInstance = Instantiate(PrefabToSpawn, new Vector3(this.transform.position.x + Random.Range(-1 * XJitter, XJitter), this.transform.position.y + Random.Range(-1 * YJitter, YJitter), this.transform.position.z), this.transform.rotation, Parent.transform);
+            if (SinksInWater)
+            {
+                NewInstance.layer = 10;
+            }
             Instances.Add(NewInstance);
         }
     }

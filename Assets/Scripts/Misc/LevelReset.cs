@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelReset : MonoBehaviour
 {
 
-    bool resetting = false;
+    public bool resetting = false;
     public float resettime = 1f;
     public Animator anim;
     public AudioSource audio;
@@ -16,6 +16,7 @@ public class LevelReset : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resetting = false;
         if (anim == null)
         {
             anim = GameObject.Find("Fade").GetComponent<Animator>();
@@ -33,6 +34,7 @@ public class LevelReset : MonoBehaviour
     {
         if (HazardTags.Contains(collision.tag))
         {
+            resetting = true;
             ReloadLevel();
         }
 

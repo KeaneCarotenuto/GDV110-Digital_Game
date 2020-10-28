@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8072955680477533835}
   - component: {fileID: 8072955680477533828}
+  - component: {fileID: 8950145896560774639}
+  - component: {fileID: 6074017770088786648}
   m_Layer: 0
   m_Name: WaterSprite
   m_TagString: Untagged
@@ -81,6 +83,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8950145896560774639
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072955680477533829}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &6074017770088786648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072955680477533829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6753f53d86d404cb98e4559043268b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Clips:
+  - {fileID: 8300000, guid: 10ce3053bc4bafd4c82f066c9939f93c, type: 3}
+  - {fileID: 8300000, guid: a57c51429ca3ca84eb6ed94487762879, type: 3}
+  - {fileID: 8300000, guid: e4dba58824af4784a89ecced5f3a9d2c, type: 3}
+  PlayOnCollision: 1
+  CollisionTags:
+  - Player
+  - PhysicsObject
+  Volume: 0.294
+  Pitch: 1
 --- !u!1 &8072955680692431016
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +142,6 @@ GameObject:
   - component: {fileID: 8072955680692431021}
   - component: {fileID: 8072955680692431022}
   - component: {fileID: 8072955680692431023}
-  - component: {fileID: 2202869274458176814}
   m_Layer: 0
   m_Name: Water
   m_TagString: Water
@@ -153,36 +202,14 @@ BuoyancyEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_SurfaceLevel: 0
+    m_Bits: 823
+  m_SurfaceLevel: -5.04
   m_Density: 0.73
   m_LinearDrag: 5
   m_AngularDrag: 5
   m_FlowAngle: 0
   m_FlowMagnitude: 0
   m_FlowVariation: 0
---- !u!114 &2202869274458176814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8072955680692431016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6753f53d86d404cb98e4559043268b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Clips:
-  - {fileID: 8300000, guid: 10ce3053bc4bafd4c82f066c9939f93c, type: 3}
-  - {fileID: 8300000, guid: a57c51429ca3ca84eb6ed94487762879, type: 3}
-  - {fileID: 8300000, guid: e4dba58824af4784a89ecced5f3a9d2c, type: 3}
-  PlayOnCollision: 1
-  CollisionTags:
-  - Player
-  - PhysicsObject
-  Volume: 0.294
-  Pitch: 1
 --- !u!1 &8072955681389300365
 GameObject:
   m_ObjectHideFlags: 0
