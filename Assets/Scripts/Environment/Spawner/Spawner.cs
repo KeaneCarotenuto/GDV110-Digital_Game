@@ -28,6 +28,7 @@ public class Spawner : MonoBehaviour
     public ParticleSystem main;
     public ParticleSystem rune;
     public AudioSource audioSauce;
+    public bool playerNear;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,23 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("Jumper"))
+        {
+            playerNear = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("Jumper"))
+        {
+            playerNear = false;
+        }
+    }
+
     public void Spawn()
     {
         if (Instances.Count < MaxInstances)
@@ -57,7 +75,12 @@ public class Spawner : MonoBehaviour
             GameObject NewInstance = Instantiate(PrefabToSpawn, new Vector3(this.transform.position.x + Random.Range(-1 * XJitter, XJitter), this.transform.position.y + Random.Range(-1 * YJitter, YJitter), this.transform.position.z), this.transform.rotation, Parent.transform);
             main.Play();
             rune.Play();
+
+            if (playerNear == true)
+            {
             audioSauce.Play();
+            }
+
             if(SinksInWater)
             {
                 NewInstance.layer = 10;
@@ -72,7 +95,12 @@ public class Spawner : MonoBehaviour
             GameObject NewInstance = Instantiate(PrefabToSpawn, new Vector3(this.transform.position.x + Random.Range(-1 * XJitter, XJitter), this.transform.position.y + Random.Range(-1 * YJitter, YJitter), this.transform.position.z), this.transform.rotation, Parent.transform);
             main.Play();
             rune.Play();
+
+            if (playerNear == true)
+            {
             audioSauce.Play();
+            }
+
             if (SinksInWater)
             {
                 NewInstance.layer = 10;
