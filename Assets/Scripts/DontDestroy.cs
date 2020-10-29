@@ -46,8 +46,11 @@ public class DontDestroy : MonoBehaviour
 
         if (objs.Length - desCount > 1)
         {
-            Destroy(gameObject);
-            Debug.Log("Destroyed " + gameObject.name + ", by " + gameObject.name + " bc too many");
+            if (!(gameObject.name.Contains("Title") && SceneManager.GetActiveScene().name.Contains("Title")))
+            {
+                Destroy(gameObject);
+                Debug.Log("Destroyed " + gameObject.name + ", by " + gameObject.name + " bc too many");
+            }
         }
 
     }

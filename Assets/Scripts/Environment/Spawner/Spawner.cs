@@ -25,6 +25,9 @@ public class Spawner : MonoBehaviour
     public List<GameObject> Instances;
     float SpawnCountdown = 0.0f;
     TimeManager timeManager;
+    public ParticleSystem main;
+    public ParticleSystem rune;
+    public AudioSource audioSauce;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +55,9 @@ public class Spawner : MonoBehaviour
         if (Instances.Count < MaxInstances)
         {
             GameObject NewInstance = Instantiate(PrefabToSpawn, new Vector3(this.transform.position.x + Random.Range(-1 * XJitter, XJitter), this.transform.position.y + Random.Range(-1 * YJitter, YJitter), this.transform.position.z), this.transform.rotation, Parent.transform);
+            main.Play();
+            rune.Play();
+            audioSauce.Play();
             if(SinksInWater)
             {
                 NewInstance.layer = 10;
@@ -64,6 +70,9 @@ public class Spawner : MonoBehaviour
             GameObject.Destroy(Instances[0]);
             Instances.RemoveAt(0);
             GameObject NewInstance = Instantiate(PrefabToSpawn, new Vector3(this.transform.position.x + Random.Range(-1 * XJitter, XJitter), this.transform.position.y + Random.Range(-1 * YJitter, YJitter), this.transform.position.z), this.transform.rotation, Parent.transform);
+            main.Play();
+            rune.Play();
+            audioSauce.Play();
             if (SinksInWater)
             {
                 NewInstance.layer = 10;
