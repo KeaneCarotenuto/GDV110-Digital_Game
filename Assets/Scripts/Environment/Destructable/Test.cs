@@ -20,11 +20,17 @@ public class Test : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GetComponent<RewindScript>().playback == false && collision.gameObject.name.Contains("Jumper") && Step <= 2)
+        //if (GetComponent<RewindScript>().playback == false && collision.gameObject.name.Contains("Jumper") && Step <= 2)
+        //{
+        //    GetComponent<Explodable>().explode();
+        //    audioSource.PlayOneShot(shatterClip);
+        //    GetComponent<RewindScript>().recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation, true));
+        //}
+
+        if (collision.gameObject.name.Contains("Jumper"))
         {
-            GetComponent<Explodable>().explode();
-            audioSource.PlayOneShot(shatterClip);
-            GetComponent<RewindScript>().recordedTrans.Insert(0,new StoredTransform(Time.time, transform.position, transform.rotation, true));
+        GetComponent<Explodable>().explode();
+        audioSource.PlayOneShot(shatterClip);
         }
     }
 }
