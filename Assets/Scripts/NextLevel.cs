@@ -11,6 +11,8 @@ public class NextLevel : MonoBehaviour
     public float delay = 0;
     public AudioSource sound = null;
     public Animator anim;
+
+    bool resetting = false;
     enum Scenes
     {
         Level1,
@@ -23,7 +25,11 @@ public class NextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex+1));
+        if (!resetting)
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+            resetting = true;
+        }
     }
 
     private void Update()
