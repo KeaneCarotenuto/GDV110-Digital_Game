@@ -13,11 +13,17 @@ public class LedgeHandScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        pmScript.handOnWall = true;
+        if (!collision.isTrigger)
+        {
+            pmScript.handOnWall = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        pmScript.handOnWall = true;
+        if (!collision.isTrigger)
+        {
+            pmScript.handOnWall = true;
+        }
     }
 }
